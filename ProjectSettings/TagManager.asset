@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - custom
+  - Sun
+  - Planets
   layers:
   - Default
   - TransparentFX
