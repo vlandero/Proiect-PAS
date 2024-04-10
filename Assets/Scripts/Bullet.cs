@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
     public float timeToLive = 5f;
 
     private Vector3 direction;
-
     public void SetTarget(GameObject target)
     {
         Vector3 direction = (target.transform.position - transform.position).normalized;
@@ -38,7 +37,7 @@ public class Bullet : MonoBehaviour
         {
             return;
         }
-        Debug.Log("Bullet hit " + other.name);
+        other.GetComponent<PlanetEventReceiver>()?.PlanetHit();
         Destroy(gameObject);
     }
 }
