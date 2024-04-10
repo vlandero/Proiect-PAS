@@ -29,6 +29,5 @@ public class SplinesAndPortals : MonoBehaviour
 
     private void Start()
     {
-        var c = GameObject.FindGameObjectsWithTag("LevelPortal").Length;
     }
 }
