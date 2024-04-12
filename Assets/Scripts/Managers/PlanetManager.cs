@@ -5,7 +5,7 @@ public class PlanetManager : MonoBehaviour
     private static PlanetManager instance;
     public static PlanetManager Instance => instance;
 
-    public GameObject[] planets;
+    public GameObject[] planets; // de inlocuit cu clasa planetei
     public GameObject sun;
 
     private void Awake()
