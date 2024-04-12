@@ -16,11 +16,11 @@ public class SunDamage : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        hp -= damage;
+        hp = Mathf.Max(0, hp - damage);
         sunDamageVisual.CalculatePixelatedBasedOnHp(hp, maxHp);
-        if (hp <= 0)
+        if (hp == 0)
         {
-            // Game Over
+            Debug.Log("Game Over!");
         }
     }
 

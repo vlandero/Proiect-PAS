@@ -1,13 +1,16 @@
 using System.Collections;
 using UnityEngine;
-// enum cu names si selectezi din el pentru a alege tipul de inamic
+
 public abstract class Enemy : MonoBehaviour
 {
-    public int damage = 1;
-    public int hp = 1;
-    public int range = 10;
-    public int attackSpeed = 1;
-    public int bulletSpeed = 20;
+    public EnemyNameType enemyName;
+    [HideInInspector] public int damage;
+    [HideInInspector] public int hp;
+    [HideInInspector] public int range;
+    [HideInInspector] public float attackSpeed;
+    [HideInInspector] public float moveSpeed;
+
+    [HideInInspector] public int stoppingDistance = 2;
 
     protected GameObject[] planets;
     protected GameObject sun;
@@ -18,6 +21,15 @@ public abstract class Enemy : MonoBehaviour
         planets = PlanetManager.Instance.planets;
         sun = PlanetManager.Instance.sun;
         enemyPath = GetComponent<EnemyPath>();
+        enemyPath.moveSpeed = moveSpeed;
+        enemyPath.stoppingDistance = stoppingDistance;
+
+        EnemyType data = EnemyData.enemyTypes[enemyName];
+        damage = data.Damage;
+        hp = data.Hp;
+        range = data.Range;
+        attackSpeed = data.AttackSpeed;
+        moveSpeed = data.MoveSpeed;
 
         StartCoroutine(ShootAtTarget());
     }

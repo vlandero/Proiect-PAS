@@ -6,6 +6,8 @@ public class BulletEnemy : Enemy
 {
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform shootingPoint;
+
+    public int bulletSpeed;
     protected override IEnumerator ShootAtTarget()
     {
         while (true)
@@ -19,7 +21,10 @@ public class BulletEnemy : Enemy
                 GameObject closestPlanet = FindClosestPlanet();
                 if (closestPlanet != null)
                 {
-                    Shoot(closestPlanet);
+                    if(IsPlanetInRange(closestPlanet))
+                    {
+                        Shoot(closestPlanet);
+                    }
                 }
                 else
                 {
@@ -28,6 +33,12 @@ public class BulletEnemy : Enemy
             }
             yield return new WaitForSeconds(attackSpeed);
         }
+    }
+
+    bool IsPlanetInRange(GameObject planet)
+    {
+        float distance = Vector3.Distance(transform.position, planet.transform.position);
+        return distance <= range;
     }
 
     GameObject FindClosestPlanet()

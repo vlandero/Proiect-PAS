@@ -4,8 +4,8 @@ using UnityEditor;
 
 public class EnemyPath : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float stoppingDistance = 5f;
+    [HideInInspector] public float moveSpeed = 5f;
+    [HideInInspector] public float stoppingDistance = 5f;
 
     private GameObject sun;
     private Renderer sunRenderer;

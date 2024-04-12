@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyNameType
+{
+    NebulaRaider,
+    LunarLurker,
+    AstroAssassin
+}
+
 public class EnemyType
 {
     public int Damage;
@@ -16,10 +23,10 @@ public class EnemyType
 
 public static class EnemyData
 {
-    public static Dictionary<string, EnemyType> enemyTypes = new Dictionary<string, EnemyType>
+    public static Dictionary<EnemyNameType, EnemyType> enemyTypes = new Dictionary<EnemyNameType, EnemyType>
     {
         {
-            "Nebula Raider", new EnemyType {
+            EnemyNameType.NebulaRaider, new EnemyType {
                 Damage = 10,
                 Hp = 20,
                 Range = 30,
@@ -30,7 +37,7 @@ public static class EnemyData
             }
         },
         {
-            "Lunar Lurker", new EnemyType {
+            EnemyNameType.LunarLurker, new EnemyType {
                 Damage = 10,
                 Hp = 20,
                 Range = 30,
@@ -41,7 +48,7 @@ public static class EnemyData
             }
         },
         {
-            "Astro Assassin", new EnemyType {
+            EnemyNameType.AstroAssassin, new EnemyType {
                 Damage = 10,
                 Hp = 20,
                 Range = 30,

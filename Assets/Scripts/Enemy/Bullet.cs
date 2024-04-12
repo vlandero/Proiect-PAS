@@ -39,6 +39,7 @@ public class Bullet : MonoBehaviour
             return;
         }
         other.GetComponent<Planet>()?.TakeDamage(damage);
+        other.GetComponent<SunDamage>()?.TakeDamage(damage);
         Destroy(gameObject);
     }
 }
