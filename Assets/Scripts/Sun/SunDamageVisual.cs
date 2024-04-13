@@ -5,7 +5,7 @@ using UnityEngine;
 public class SunDamageVisual : MonoBehaviour
 {
     [SerializeField] Material material;
-    [SerializeField] float pixelateSpeed = .7f;
+    [SerializeField] float pixelateSpeed = 15f;
 
     private float pixelateAmount;
     private float pixelateAmountTarget;
@@ -20,15 +20,11 @@ public class SunDamageVisual : MonoBehaviour
     {
         pixelateAmount = Mathf.Lerp(pixelateAmount, pixelateAmountTarget, Time.deltaTime * pixelateSpeed);
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            pixelateAmountTarget = .7f;
-        }
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            pixelateAmountTarget = 0f;
-        }
-
         material.SetFloat("_PixelatedVal", pixelateAmount);
+    }
+
+    public void CalculatePixelatedBasedOnHp(int hp, int maxHp)
+    {
+        pixelateAmountTarget = 1 - (float)hp / maxHp;
     }
 }

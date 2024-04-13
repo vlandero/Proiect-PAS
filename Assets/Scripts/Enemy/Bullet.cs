@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
     public float timeToLive = 5f;
+    public int damage = 0;
 
     private Vector3 direction;
     public void SetTarget(GameObject target)
@@ -37,7 +38,8 @@ public class Bullet : MonoBehaviour
         {
             return;
         }
-        other.GetComponent<PlanetEventReceiver>()?.PlanetHit();
+        other.GetComponent<Planet>()?.TakeDamage(damage);
+        other.GetComponent<SunDamage>()?.TakeDamage(damage);
         Destroy(gameObject);
     }
 }
