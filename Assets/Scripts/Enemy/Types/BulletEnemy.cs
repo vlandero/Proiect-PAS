@@ -69,10 +69,4 @@ public class BulletEnemy : Enemy
             bulletComponent.SetTarget(target);
         }
     }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
-    }
 }

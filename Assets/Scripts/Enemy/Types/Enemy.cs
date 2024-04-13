@@ -21,7 +21,6 @@ public abstract class Enemy : MonoBehaviour
         planets = PlanetManager.Instance.planets;
         sun = PlanetManager.Instance.sun;
         enemyPath = GetComponent<EnemyPath>();
-        enemyPath.moveSpeed = moveSpeed;
         enemyPath.stoppingDistance = stoppingDistance;
 
         EnemyType data = EnemyData.enemyTypes[enemyName];
@@ -30,6 +29,8 @@ public abstract class Enemy : MonoBehaviour
         range = data.Range;
         attackSpeed = data.AttackSpeed;
         moveSpeed = data.MoveSpeed;
+
+        enemyPath.moveSpeed = moveSpeed;
 
         StartCoroutine(ShootAtTarget());
     }
