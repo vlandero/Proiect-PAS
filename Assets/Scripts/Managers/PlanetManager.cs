@@ -27,4 +27,9 @@ public class PlanetManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
+
 }
