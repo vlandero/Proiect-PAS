@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 
 public class CustomSplineAnimate : MonoBehaviour
@@ -18,6 +19,7 @@ public class CustomSplineAnimate : MonoBehaviour
     private void Start()
     {
         totalPortals = spline.Spline.Count - 1;
+        Time.timeScale = 1;
     }
 
     void Update()
@@ -39,8 +41,9 @@ public class CustomSplineAnimate : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if(isMoving) return;
             Debug.Log("Level selected " + (currentPortalIndex + 1));
-            isMoving = !isMoving;
+            SceneManager.LoadScene(currentPortalIndex + 2);
         }
         Vector3 targetPosition = spline.EvaluatePosition(currentDistance);
         targetPosition.y = transform.position.y;
