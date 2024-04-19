@@ -7,6 +7,7 @@ using UnityEngine.Splines;
 public class CustomSplineAnimate : MonoBehaviour
 {
     public SplineContainer spline;
+    public Animator animator;
     public float moveSpeed = 1f;
     public float rotationSpeed = 5f;
 
@@ -34,7 +35,9 @@ public class CustomSplineAnimate : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            Debug.Log("Right Arrow");
             if (currentPortalIndex == totalPortals || isMoving) return;
+            Debug.Log("Right Arrow");
             currentPortalIndex++;
             isMoving = true;
             movingForward = true;
@@ -42,8 +45,13 @@ public class CustomSplineAnimate : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if(isMoving) return;
-            Debug.Log("Level selected " + (currentPortalIndex + 1));
-            SceneManager.LoadScene(currentPortalIndex + 2);
+            isMoving = true;
+            animator.SetTrigger("EnterLevel");
+            StartCoroutine(SwitchToLevelScene());
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(Scenes.MainMenu);
         }
         Vector3 targetPosition = spline.EvaluatePosition(currentDistance);
         targetPosition.y = transform.position.y;
@@ -85,6 +93,11 @@ public class CustomSplineAnimate : MonoBehaviour
                 currentDistance -= movement;
             }
         }
+    }
 
+    private IEnumerator SwitchToLevelScene()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(currentPortalIndex + 2);
     }
 }
