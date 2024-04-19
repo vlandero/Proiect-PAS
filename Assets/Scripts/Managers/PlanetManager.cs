@@ -15,7 +15,6 @@ public class PlanetManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         instance = this;
         DontDestroyOnLoad(gameObject);
         sun = GameObject.FindGameObjectWithTag("Sun");
