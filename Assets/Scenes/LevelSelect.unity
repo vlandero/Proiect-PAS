@@ -282,7 +282,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1119153207}
   - component: {fileID: 1119153206}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpaceShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,6 +305,8 @@ MonoBehaviour:
   animator: {fileID: 3469287836814269576}
   moveSpeed: 20
   rotationSpeed: 5
+  renderQueue: 3001
+  rend: {fileID: 1711813856310143053}
 --- !u!4 &1119153207
 Transform:
   m_ObjectHideFlags: 0
@@ -314,7 +316,7 @@ Transform:
   m_GameObject: {fileID: 1119153205}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -519.2, y: 3.2, z: -37.7}
+  m_LocalPosition: {x: -519.2, y: 4.34, z: -37.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1483,7 +1485,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 53
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1581,7 +1583,7 @@ GameObject:
   - component: {fileID: 3469287836814269575}
   - component: {fileID: 1711813856310143053}
   - component: {fileID: 3469287836814269576}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2.5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1666,5 +1668,5 @@ SceneRoots:
   - {fileID: 1771896183}
   - {fileID: 341986507}
   - {fileID: 1680274952}
-  - {fileID: 82445142}
   - {fileID: 1119153207}
+  - {fileID: 82445142}
