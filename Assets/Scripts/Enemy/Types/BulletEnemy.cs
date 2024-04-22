@@ -8,6 +8,7 @@ public class BulletEnemy : Enemy
     [SerializeField] protected Transform shootingPoint;
 
     public int bulletSpeed;
+
     protected override IEnumerator ShootAtTarget()
     {
         while (true)
@@ -21,7 +22,7 @@ public class BulletEnemy : Enemy
                 GameObject closestPlanet = FindClosestPlanet();
                 if (closestPlanet != null)
                 {
-                    if(IsPlanetInRange(closestPlanet))
+                    if (IsPlanetInRange(closestPlanet))
                     {
                         Shoot(closestPlanet);
                     }

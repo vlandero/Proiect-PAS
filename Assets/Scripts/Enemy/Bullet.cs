@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour
     public float speed = 10f;
     public float timeToLive = 5f;
     public int damage = 0;
+    public AudioSource sound;
+    public MeshRenderer renderer;
 
     private Vector3 direction;
     public void SetTarget(GameObject target)
@@ -17,6 +19,7 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
+        sound.Play();
         StartCoroutine(DestroyAfterTime(timeToLive));
     }
 
@@ -28,8 +31,8 @@ public class Bullet : MonoBehaviour
     IEnumerator DestroyAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-
-        Destroy(gameObject);
+        
+        Destroy(gameObject, sound.clip.length);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,8 +41,16 @@ public class Bullet : MonoBehaviour
         {
             return;
         }
+        if (other.GetComponent<Planet>() != null)
+        {
+            renderer.enabled = false;
+        }
+        if (other.GetComponent<SunDamage>() != null)
+        {
+            renderer.enabled = false;
+        }
         other.GetComponent<Planet>()?.TakeDamage(damage);
         other.GetComponent<SunDamage>()?.TakeDamage(damage);
-        Destroy(gameObject);
+        Destroy(gameObject, sound.clip.length);
     }
 }
