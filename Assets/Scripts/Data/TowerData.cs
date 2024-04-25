@@ -18,12 +18,18 @@ public class TowerType
     public List<TowerLevel> Levels = new List<TowerLevel>();
 }
 
+public enum TowerNameType
+{
+    Sentinel,
+    Frostbite
+}
+
 public static class TowerData
 {
-    public static Dictionary<string, TowerType> TowerTypes = new Dictionary<string, TowerType>
+    public static Dictionary<TowerNameType, TowerType> TowerTypes = new Dictionary<TowerNameType, TowerType>
     {
         {
-            "Sentinel", new TowerType {
+            TowerNameType.Sentinel, new TowerType {
                 Name = "Sentinel",
                 Levels = new List<TowerLevel>
                 {
@@ -45,7 +51,7 @@ public static class TowerData
             }
         },
         {
-            "Frostbite", new TowerType {
+            TowerNameType.Frostbite, new TowerType {
                 Name = "Frostbite",
                 Levels = new List<TowerLevel>
                 {
