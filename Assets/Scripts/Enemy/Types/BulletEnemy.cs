@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletEnemy : Enemy
@@ -18,15 +17,15 @@ public class BulletEnemy : Enemy
             }
             else
             {
-                GameObject closestPlanet = FindClosestPlanet();
+                Planet closestPlanet = FindClosestPlanetWithTower();
                 if (closestPlanet != null)
                 {
-                    if(IsPlanetInRange(closestPlanet))
+                    if(IsInRange(closestPlanet.gameObject))
                     {
                         Shoot(closestPlanet);
                     }
                 }
-                else
+                else if(IsInRange(sun.gameObject))
                 {
                     Shoot(sun);
                 }
@@ -35,20 +34,20 @@ public class BulletEnemy : Enemy
         }
     }
 
-    bool IsPlanetInRange(GameObject planet)
+    bool IsInRange(GameObject planet)
     {
         float distance = Vector3.Distance(transform.position, planet.transform.position);
         return distance <= range;
     }
 
-    GameObject FindClosestPlanet()
+    Planet FindClosestPlanetWithTower()
     {
-        GameObject closestPlanet = null;
+        Planet closestPlanet = null;
         float closestDistance = Mathf.Infinity;
-        foreach (GameObject planet in planets)
+        foreach (Planet planet in planets)
         {
             float distance = Vector3.Distance(transform.position, planet.transform.position);
-            if (distance < closestDistance)
+            if (distance < closestDistance && planet.HasTower())
             {
                 closestDistance = distance;
                 closestPlanet = planet;
@@ -66,7 +65,17 @@ public class BulletEnemy : Enemy
         {
             bulletComponent.speed = bulletSpeed;
             bulletComponent.damage = damage;
-            bulletComponent.SetTarget(target);
+            bulletComponent.SetTarget(target.gameObject);
         }
+    }
+
+    void Shoot(Sun sun)
+    {
+        Shoot(sun.gameObject);
+    }
+
+    void Shoot(Planet planet)
+    {
+        Shoot(planet.tower.gameObject);
     }
 }

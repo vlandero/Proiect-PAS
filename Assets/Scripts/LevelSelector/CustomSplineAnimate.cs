@@ -39,9 +39,7 @@ public class CustomSplineAnimate : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            Debug.Log("Right Arrow");
             if (currentPortalIndex == totalPortals || isMoving) return;
-            Debug.Log("Right Arrow");
             currentPortalIndex++;
             isMoving = true;
             movingForward = true;

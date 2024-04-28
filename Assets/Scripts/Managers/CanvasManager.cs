@@ -20,15 +20,21 @@ public class CanvasManager : MonoBehaviour
 
     private void Start()
     {
-        gameOverCanvas.gameObject.SetActive(false);
+        gameOverCanvas.gameObject.SetActive(true);
         pauseCanvas.gameObject.SetActive(false);
     }
+
+    public void ShowGameOverLoss()
+    {
+        gameOverCanvas.ShowLose();
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOverCanvas.IsGameOver)
         {
-            PauseManager.instance.TogglePause();
-            pauseCanvas.gameObject.SetActive(PauseManager.instance.IsPaused());
+            PauseManager.TogglePause();
+            pauseCanvas.gameObject.SetActive(PauseManager.IsPaused());
         }
     }
 }

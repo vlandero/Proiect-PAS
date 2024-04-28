@@ -4,16 +4,16 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     public EnemyNameType enemyName;
-    [HideInInspector] public int damage;
-    [HideInInspector] public int hp;
-    [HideInInspector] public int range;
-    [HideInInspector] public float attackSpeed;
-    [HideInInspector] public float moveSpeed;
+    [HideInInspector] protected int damage;
+    [HideInInspector] protected int hp;
+    [HideInInspector] protected int range;
+    [HideInInspector] protected float attackSpeed;
+    [HideInInspector] protected float moveSpeed;
 
-    [HideInInspector] public int stoppingDistance = 2;
+    [HideInInspector] protected int stoppingDistance = 2;
 
-    protected GameObject[] planets;
-    protected GameObject sun;
+    protected Planet[] planets;
+    protected Sun sun;
     protected EnemyPath enemyPath;
 
     [SerializeField] protected Material dissolveMaterial;

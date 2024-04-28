@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - LevelPortal
   - Spline
+  - Tower
   layers:
   - Default
   - TransparentFX

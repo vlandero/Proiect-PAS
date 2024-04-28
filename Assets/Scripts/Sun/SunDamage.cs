@@ -20,7 +20,7 @@ public class SunDamage : MonoBehaviour
         sunDamageVisual.CalculatePixelatedBasedOnHp(hp, maxHp);
         if (hp == 0)
         {
-            Debug.Log("Game Over!");
+            CanvasManager.instance.ShowGameOverLoss();
         }
     }
 

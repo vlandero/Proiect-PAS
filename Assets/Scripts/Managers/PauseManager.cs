@@ -6,7 +6,7 @@ public class PauseManager : MonoBehaviour
 {
     public static PauseManager instance;
 
-    private bool isPaused = false;
+    private static bool isPaused = false;
 
     private void Awake()
     {
@@ -20,25 +20,25 @@ public class PauseManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void Pause()
+    public static void Pause()
     {
         isPaused = true;
         Time.timeScale = 0.0f;
     }
 
-    public void Resume()
+    public static void Resume()
     {
         isPaused = false;
         Time.timeScale = 1.0f;
     }
 
-    public void TogglePause()
+    public static void TogglePause()
     {
         isPaused = !isPaused;
         Time.timeScale = 1 - Time.timeScale;
     }
 
-    public bool IsPaused()
+    public static bool IsPaused()
     {
         return isPaused;
     }

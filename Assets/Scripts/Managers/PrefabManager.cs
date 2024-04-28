@@ -36,11 +36,19 @@ public class PrefabManager : MonoBehaviour
 
         foreach (EnemyPrefabInstance prefab in enemyPrefabsList)
         {
+            if(enemyPrefabs.ContainsKey(prefab.name))
+            {
+                continue;
+            }
             enemyPrefabs.Add(prefab.name, prefab.prefab);
         }
 
         foreach (TowerPrefabInstance prefab in towerPrefabsList)
         {
+            if(towerPrefabs.ContainsKey(prefab.name))
+            {
+                continue;
+            }
             towerPrefabs.Add(prefab.name, prefab.prefab);
         }
     }

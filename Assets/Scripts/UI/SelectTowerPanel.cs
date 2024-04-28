@@ -7,6 +7,7 @@ public class SelectTowerPanel : MonoBehaviour
 {
     [SerializeField] private GameObject towerElementPrefab;
     [SerializeField] private GameObject content;
+    [SerializeField] private Planet planet;
 
     private void Awake()
     {
@@ -21,6 +22,6 @@ public class SelectTowerPanel : MonoBehaviour
 
     public void Select(TowerNameType t)
     {
-        Debug.Log("Selected tower: " + t);
+        planet.CreateTower(t);
     }
 }

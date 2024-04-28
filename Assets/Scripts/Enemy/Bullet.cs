@@ -34,12 +34,15 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") || other.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
+        if(other.CompareTag("Sun"))
         {
-            return;
+            other.GetComponent<Sun>().TakeDamage(damage);
+            Destroy(gameObject);
         }
-        other.GetComponent<Planet>()?.TakeDamage(damage);
-        other.GetComponent<SunDamage>()?.TakeDamage(damage);
-        Destroy(gameObject);
+        else if(other.CompareTag("Tower"))
+        {
+            other.GetComponent<Tower>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }
