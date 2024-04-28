@@ -8,6 +8,7 @@ public class TowerLevel
     public int Damage;
     public int Range;
     public int Health;
+    public float BulletSpeed;
     public int UpgradePrice;
     public float AttackSpeed;
 }
@@ -39,6 +40,7 @@ public static class TowerData
                         Damage = 10,
                         Range = 20,
                         Health = 105,
+                        BulletSpeed = 10,
                         AttackSpeed = 1.5f,
                         UpgradePrice = 100
                     },
@@ -47,6 +49,7 @@ public static class TowerData
                         Damage = 15,
                         Range = 25,
                         Health = 120,
+                        BulletSpeed = 10,
                         AttackSpeed = 2.0f,
                         UpgradePrice = 100
                     }
@@ -63,6 +66,7 @@ public static class TowerData
                         Damage = 10,
                         Range = 20,
                         Health = 20,
+                        BulletSpeed = 10,
                         AttackSpeed = 1.5f,
                         UpgradePrice = 100
                     },
@@ -71,6 +75,7 @@ public static class TowerData
                         Damage = 15,
                         Range = 25,
                         Health = 115,
+                        BulletSpeed = 10,
                         AttackSpeed = 2.0f,
                         UpgradePrice = 100
                     }

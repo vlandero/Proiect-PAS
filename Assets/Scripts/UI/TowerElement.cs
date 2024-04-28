@@ -6,7 +6,8 @@ using UnityEngine;
 public class TowerElement : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI towerName;
-    TowerNameType towerType;
+
+    [HideInInspector] public TowerNameType towerType;
 
     public void UpdateName(TowerNameType t)
     {
@@ -17,5 +18,6 @@ public class TowerElement : MonoBehaviour
     public void Select()
     {
         transform.parent.GetComponent<TowerPanelContent>().Select(towerType);
+        CanvasManager.instance.mainGui.ToggleTowerStatsPanel(false);
     }
 }

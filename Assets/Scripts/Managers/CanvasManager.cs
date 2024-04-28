@@ -7,6 +7,7 @@ public class CanvasManager : MonoBehaviour
     public static CanvasManager instance;
     public GameOverCanvas gameOverCanvas;
     public PauseCanvas pauseCanvas;
+    public MainGui mainGui;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -22,6 +23,7 @@ public class CanvasManager : MonoBehaviour
     {
         gameOverCanvas.gameObject.SetActive(true);
         pauseCanvas.gameObject.SetActive(false);
+        mainGui.towerStatsPanel.SetActive(false);
     }
 
     public void ShowGameOverLoss()

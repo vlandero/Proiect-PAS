@@ -11,6 +11,7 @@ public class Tower : MonoBehaviour
     public int range;
     public int upgradePrice;
     public float attackSpeed;
+    public float bulletSpeed;
     public float maxHealth;
     public float hp;
 
@@ -27,6 +28,7 @@ public class Tower : MonoBehaviour
         upgradePrice = towerType.Levels[0].UpgradePrice;
         attackSpeed = towerType.Levels[0].AttackSpeed;
         maxHealth = towerType.Levels[0].Health;
+        bulletSpeed = towerType.Levels[0].BulletSpeed;
         hp = maxHealth;
     }
 
