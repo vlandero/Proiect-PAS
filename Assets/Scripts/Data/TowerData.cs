@@ -38,7 +38,7 @@ public static class TowerData
                     new TowerLevel {
                         Level = 1,
                         Damage = 10,
-                        Range = 20,
+                        Range = 50,
                         Health = 105,
                         BulletSpeed = 10,
                         AttackSpeed = 1.5f,
@@ -47,7 +47,7 @@ public static class TowerData
                     new TowerLevel {
                         Level = 2,
                         Damage = 15,
-                        Range = 25,
+                        Range = 50,
                         Health = 120,
                         BulletSpeed = 10,
                         AttackSpeed = 2.0f,
@@ -64,7 +64,7 @@ public static class TowerData
                     new TowerLevel {
                         Level = 1,
                         Damage = 10,
-                        Range = 20,
+                        Range = 50,
                         Health = 20,
                         BulletSpeed = 10,
                         AttackSpeed = 1.5f,
@@ -73,7 +73,7 @@ public static class TowerData
                     new TowerLevel {
                         Level = 2,
                         Damage = 15,
-                        Range = 25,
+                        Range = 50,
                         Health = 115,
                         BulletSpeed = 10,
                         AttackSpeed = 2.0f,

@@ -56,10 +56,6 @@ public abstract class Enemy : MonoBehaviour
             }
             return;
         }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Die();
-        }
     }
 
     protected abstract IEnumerator ShootAtTarget();

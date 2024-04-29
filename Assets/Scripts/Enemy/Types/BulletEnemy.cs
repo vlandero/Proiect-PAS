@@ -65,6 +65,7 @@ public class BulletEnemy : Enemy
         {
             bulletComponent.speed = bulletSpeed;
             bulletComponent.damage = damage;
+            bulletComponent.attackTarget = AttackTarget.Tower;
             bulletComponent.SetTarget(target.gameObject);
         }
     }

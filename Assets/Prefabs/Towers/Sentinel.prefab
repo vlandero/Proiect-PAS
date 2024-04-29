@@ -72,6 +72,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4999300555838769840}
+  - {fileID: 3803193435295961437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3801770351648227803
@@ -163,9 +164,11 @@ MonoBehaviour:
   range: 0
   upgradePrice: 0
   attackSpeed: 0
+  bulletSpeed: 0
   maxHealth: 0
   hp: 0
   towerHp: {fileID: 2324540303047026687}
+  shootingPoint: {fileID: 3803193435295961437}
 --- !u!1 &4607722678466912831
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,3 +510,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpBar: {fileID: 1338570273418456101}
+--- !u!1 &6551881369917831381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3803193435295961437}
+  m_Layer: 0
+  m_Name: Shooting Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3803193435295961437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551881369917831381}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.548, y: 0.532, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8571590194210003271}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

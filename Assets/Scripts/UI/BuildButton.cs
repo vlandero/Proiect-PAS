@@ -6,19 +6,14 @@ using UnityEngine.EventSystems;
 public class BuildButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TowerElement towerElement;
-    private void Start()
-    {
-        
-    }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CanvasManager.instance.mainGui.ToggleTowerStatsPanel(TowerData.TowerTypes[towerElement.towerType].Levels[0]);
-        Debug.Log("Pointer Enter");
+        CanvasManager.instance.mainGui.SetTowerStats(TowerData.TowerTypes[towerElement.towerType].Levels[0]);
+        CanvasManager.instance.mainGui.ToggleTowerStatsPanel(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        CanvasManager.instance.mainGui.ToggleTowerStatsPanel();
-        Debug.Log("Pointer Exit");
+        CanvasManager.instance.mainGui.ToggleTowerStatsPanel(false);
     }
 }

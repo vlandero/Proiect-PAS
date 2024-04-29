@@ -6,7 +6,7 @@ public class Tower : MonoBehaviour
 {
     public TowerNameType towerName;
     [Header("Tower Stats")]
-    public int level;
+    public int level; // START INDEX 1
     public int damage;
     public int range;
     public int upgradePrice;
@@ -15,8 +15,12 @@ public class Tower : MonoBehaviour
     public float maxHealth;
     public float hp;
 
+    [Header("References")]
     [SerializeField] private TowerHp towerHp;
-    [SerializeField] private Planet parentPlanet;
+    [SerializeField] private Transform shootingPoint;
+    [SerializeField] private GameObject bulletPrefab;
+
+    private Planet parentPlanet;
 
     private void Start()
     {
@@ -32,6 +36,12 @@ public class Tower : MonoBehaviour
         hp = maxHealth;
     }
 
+    private void FindClosestEnemyInRange()
+    {
+
+
+    }
+
     public void TakeDamage(int damage)
     {
         hp -= damage;
@@ -45,7 +55,7 @@ public class Tower : MonoBehaviour
     public void Upgrade()
     {
         TowerType towerType = TowerData.TowerTypes[towerName];
-        if(level < towerType.Levels.Count - 1)
+        if(level < towerType.Levels.Count)
         {
             level++;
             damage = towerType.Levels[level - 1].Damage;
@@ -55,6 +65,10 @@ public class Tower : MonoBehaviour
             maxHealth = towerType.Levels[level - 1].Health;
             hp = maxHealth;
             towerHp.UpdateHp(1);
+        }
+        if(level == towerType.Levels.Count)
+        {
+            parentPlanet.upgradeTowerIcon.SetLock();
         }
     }
 

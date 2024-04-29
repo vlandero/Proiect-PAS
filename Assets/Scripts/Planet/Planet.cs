@@ -6,9 +6,11 @@ public class Planet : MonoBehaviour
 {
     [SerializeField] private GameObject addTowerButton;
     [SerializeField] private GameObject planetMesh;
-    [SerializeField] private GameObject addTowerCanvas;
-    [SerializeField] private GameObject selectTowerCanvas;
+    [SerializeField] private GameObject selectTowerButton;
     [SerializeField] private GameObject towerCanvas;
+    [SerializeField] private GameObject upgradeTowerButton;
+
+    public UpgradeTowerIcon upgradeTowerIcon;
 
     public Tower tower = null;
 
@@ -18,12 +20,12 @@ public class Planet : MonoBehaviour
     {
         planetMeshRenderer = planetMesh.GetComponent<Renderer>();
         addTowerButton.SetActive(true);
-        selectTowerCanvas.SetActive(false);
+        selectTowerButton.SetActive(false);
+        upgradeTowerButton.SetActive(false);
     }
 
     public void CreateTower(TowerNameType t)
     {
-        towerCanvas.SetActive(false);
         GameObject towerPrefab = PrefabManager.towerPrefabs[t];
         GameObject tower = Instantiate(towerPrefab, transform.position, Quaternion.identity);
         tower.transform.SetParent(transform);
@@ -31,14 +33,26 @@ public class Planet : MonoBehaviour
         float towerHeight = tower.GetComponent<Renderer>().bounds.size.y;
         tower.transform.localPosition = planetMesh.transform.localPosition + new Vector3(0, planetHeight / 2 + towerHeight / 2, 0);
         this.tower = tower.GetComponent<Tower>();
+        addTowerButton.SetActive(false);
+        selectTowerButton.SetActive(false);
+        upgradeTowerButton.SetActive(true);
+        if (TowerData.TowerTypes[t].Levels.Count > 1)
+        {
+            upgradeTowerIcon.SetUpgrade();
+        }
+        else
+        {
+            upgradeTowerIcon.SetLock();
+        }
     }
 
     public void DestroyTower()
     {
         tower = null;
         towerCanvas.SetActive(true);
-        addTowerCanvas.SetActive(true);
-        selectTowerCanvas.SetActive(false);
+        addTowerButton.SetActive(true);
+        selectTowerButton.SetActive(false);
+        upgradeTowerButton.SetActive(false);
     }
 
     public bool HasTower()
@@ -48,13 +62,22 @@ public class Planet : MonoBehaviour
 
     public void ShowAddTowerCanvas()
     {
-        addTowerCanvas.SetActive(true);
-        selectTowerCanvas.SetActive(false);
+        addTowerButton.SetActive(true);
+        selectTowerButton.SetActive(false);
     }
 
     public void ShowSelectTowerCanvas()
     {
-        addTowerCanvas.SetActive(false);
-        selectTowerCanvas.SetActive(true);
+        addTowerButton.SetActive(false);
+        selectTowerButton.SetActive(true);
+    }
+
+    public void UpgradeTower()
+    {
+        if(tower != null && tower.level < TowerData.TowerTypes[tower.towerName].Levels.Count)
+        {
+            tower.Upgrade();
+            CanvasManager.instance.mainGui.SetTowerStats(TowerData.TowerTypes[tower.towerName].Levels[tower.level - 1]);
+        }
     }
 }

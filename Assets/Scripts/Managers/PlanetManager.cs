@@ -6,6 +6,7 @@ public class PlanetManager : MonoBehaviour
     public static PlanetManager Instance => instance;
 
     public Planet[] planets;
+    public Enemy[] enemies;
     public Sun sun;
 
     private void Awake()
