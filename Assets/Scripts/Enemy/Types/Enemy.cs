@@ -4,16 +4,19 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     public EnemyNameType enemyName;
-    [HideInInspector] public int damage;
-    [HideInInspector] public int hp;
-    [HideInInspector] public int range;
-    [HideInInspector] public float attackSpeed;
-    [HideInInspector] public float moveSpeed;
+    public Transform targetPoint;
+    [SerializeField] private TowerHp enemyHpUi;
+    [HideInInspector] protected int damage;
+    [HideInInspector] protected int hp;
+    [HideInInspector] protected int maxHp;
+    [HideInInspector] protected int range;
+    [HideInInspector] protected float attackSpeed;
+    [HideInInspector] protected float moveSpeed;
 
-    [HideInInspector] public int stoppingDistance = 2;
+    [HideInInspector] protected int stoppingDistance = 2;
 
-    protected GameObject[] planets;
-    protected GameObject sun;
+    protected Planet[] planets;
+    protected Sun sun;
     protected EnemyPath enemyPath;
 
     [SerializeField] protected Material dissolveMaterial;
@@ -34,6 +37,7 @@ public abstract class Enemy : MonoBehaviour
         EnemyType data = EnemyData.enemyTypes[enemyName];
         damage = data.Damage;
         hp = data.Hp;
+        maxHp = data.Hp;
         range = data.Range;
         attackSpeed = data.AttackSpeed;
         moveSpeed = data.MoveSpeed;
@@ -56,10 +60,6 @@ public abstract class Enemy : MonoBehaviour
             }
             return;
         }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Die();
-        }
     }
 
     protected abstract IEnumerator ShootAtTarget();
@@ -67,6 +67,7 @@ public abstract class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         hp -= damage;
+        enemyHpUi.UpdateHp((float)hp / (float)maxHp);
         if (hp <= 0)
         {
             Die();
@@ -75,12 +76,14 @@ public abstract class Enemy : MonoBehaviour
 
     public void Heal(int healAmount)
     {
-        hp = Mathf.Min(hp + healAmount, EnemyData.enemyTypes[enemyName].Hp);
+        hp = Mathf.Min(hp + healAmount, maxHp);
+        enemyHpUi.UpdateHp((float)hp / (float)maxHp);
     }
 
     public void Die()
     {
         StopCoroutine(ShootAtTarget());
+        EnemyManager.Instance.enemies.Remove(this);
         enemyPath.moveSpeed = 0;
         moveSpeed = 0;
         isDying = true;

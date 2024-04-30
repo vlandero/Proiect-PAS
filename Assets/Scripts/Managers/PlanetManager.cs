@@ -5,8 +5,9 @@ public class PlanetManager : MonoBehaviour
     private static PlanetManager instance;
     public static PlanetManager Instance => instance;
 
-    public GameObject[] planets; // de inlocuit cu clasa planetei
-    public GameObject sun;
+    public Planet[] planets;
+    public Enemy[] enemies;
+    public Sun sun;
 
     private void Awake()
     {
@@ -17,12 +18,12 @@ public class PlanetManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
-        sun = GameObject.FindGameObjectWithTag("Sun");
+        sun = GameObject.FindGameObjectWithTag("Sun").GetComponent<Sun>();
         GameObject planetsObj = GameObject.FindGameObjectWithTag("Planets");
-        planets = new GameObject[planetsObj.transform.childCount];
+        planets = new Planet[planetsObj.transform.childCount];
         for (int i = 0; i < planetsObj.transform.childCount; i++)
         {
-            planets[i] = planetsObj.transform.GetChild(i).gameObject;
+            planets[i] = planetsObj.transform.GetChild(i).gameObject.GetComponent<Planet>();
         }
     }
 

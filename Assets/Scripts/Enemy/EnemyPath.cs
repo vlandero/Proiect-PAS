@@ -7,7 +7,7 @@ public class EnemyPath : MonoBehaviour
     [HideInInspector] public float moveSpeed = 5f;
     [HideInInspector] public float stoppingDistance = 5f;
 
-    private GameObject sun;
+    private Sun sun;
     private Renderer sunRenderer;
     private Rigidbody rb;
     private bool stopped = false;

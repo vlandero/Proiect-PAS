@@ -10,17 +10,21 @@ public class CustomSplineAnimate : MonoBehaviour
     public Animator animator;
     public float moveSpeed = 1f;
     public float rotationSpeed = 5f;
+    public int renderQueue = 3000;
 
     private float currentDistance = 0f;
     private int currentPortalIndex = 0;
     private int totalPortals = 0;
     private bool isMoving = false;
     private bool movingForward = true;
+    [SerializeField] private Renderer rend;
 
     private void Start()
     {
         totalPortals = spline.Spline.Count - 1;
         Time.timeScale = 1;
+        rend.material.renderQueue = renderQueue;
+        
     }
 
     void Update()
@@ -35,9 +39,7 @@ public class CustomSplineAnimate : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            Debug.Log("Right Arrow");
             if (currentPortalIndex == totalPortals || isMoving) return;
-            Debug.Log("Right Arrow");
             currentPortalIndex++;
             isMoving = true;
             movingForward = true;

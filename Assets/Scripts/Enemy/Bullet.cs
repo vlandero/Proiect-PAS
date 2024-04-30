@@ -1,11 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
+public enum AttackTarget
+{
+    Spaceship,
+    Tower
+}
+
 public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
     public float timeToLive = 5f;
     public int damage = 0;
+    public AttackTarget attackTarget;
 
     private Vector3 direction;
     public void SetTarget(GameObject target)
@@ -34,12 +41,26 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if(attackTarget == AttackTarget.Tower)
         {
-            return;
+            if(other.CompareTag("Sun"))
+            {
+                other.GetComponent<Sun>().TakeDamage(damage);
+                Destroy(gameObject);
+            }
+            else if(other.CompareTag("Tower"))
+            {
+                other.GetComponent<Tower>().TakeDamage(damage);
+                Destroy(gameObject);
+            }
         }
-        other.GetComponent<Planet>()?.TakeDamage(damage);
-        other.GetComponent<SunDamage>()?.TakeDamage(damage);
-        Destroy(gameObject);
+        else if(attackTarget == AttackTarget.Spaceship)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                other.GetComponent<Enemy>().TakeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
     }
 }

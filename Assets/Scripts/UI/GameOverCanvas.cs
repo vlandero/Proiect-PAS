@@ -7,6 +7,8 @@ public class GameOverCanvas : MonoBehaviour
     [SerializeField] private GameObject winComponent;
     [SerializeField] private GameObject loseComponent;
 
+    public bool IsGameOver { get; private set; }
+
     private void Start()
     {
         winComponent.SetActive(false);
@@ -16,12 +18,12 @@ public class GameOverCanvas : MonoBehaviour
     public void ShowWin()
     {
         winComponent.SetActive(true);
-        PauseManager.instance.Pause();
+        PauseManager.Pause();
     }
 
     public void ShowLose()
     {
         loseComponent.SetActive(true);
-        PauseManager.instance.Pause();
+        PauseManager.Pause();
     }
 }
