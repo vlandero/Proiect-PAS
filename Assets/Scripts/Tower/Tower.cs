@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Tower : MonoBehaviour
 {
@@ -34,12 +35,52 @@ public class Tower : MonoBehaviour
         maxHealth = towerType.Levels[0].Health;
         bulletSpeed = towerType.Levels[0].BulletSpeed;
         hp = maxHealth;
+
+        StartCoroutine(Shoot());
     }
 
-    private void FindClosestEnemyInRange()
+    private Enemy FindClosestEnemyInRange()
     {
+        Enemy closestEnemy = null;
+        foreach(var enemy in EnemyManager.Instance.enemies)
+        {
+            if(Vector3.Distance(transform.position, enemy.transform.position) <= range && !enemy.IsDying)
+            {
+                if(closestEnemy == null)
+                {
+                    closestEnemy = enemy;
+                }
+                else
+                {
+                    if(Vector3.Distance(transform.position, enemy.transform.position) < Vector3.Distance(transform.position, closestEnemy.transform.position) && !enemy.IsDying)
+                    {
+                        closestEnemy = enemy;
+                    }
+                }
+            }
+        }
+        return closestEnemy;
+    }
 
-
+    IEnumerator Shoot()
+    {
+        while(true)
+        {
+            Enemy closestEnemy = FindClosestEnemyInRange();
+            if(closestEnemy != null)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.identity);
+                Bullet bulletComponent = bullet.GetComponent<Bullet>();
+                if (bulletComponent != null)
+                {
+                    bulletComponent.speed = bulletSpeed;
+                    bulletComponent.damage = damage;
+                    bulletComponent.attackTarget = AttackTarget.Spaceship;
+                    bulletComponent.SetTarget(closestEnemy.targetPoint.gameObject);
+                }
+            }
+            yield return new WaitForSeconds(attackSpeed);
+        }
     }
 
     public void TakeDamage(int damage)

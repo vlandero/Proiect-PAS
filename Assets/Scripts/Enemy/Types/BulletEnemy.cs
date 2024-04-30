@@ -9,7 +9,7 @@ public class BulletEnemy : Enemy
     public int bulletSpeed;
     protected override IEnumerator ShootAtTarget()
     {
-        while (true)
+        while (!isDying)
         {
             if (enemyPath.IsStopped)
             {

@@ -4,8 +4,11 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     public EnemyNameType enemyName;
+    public Transform targetPoint;
+    [SerializeField] private TowerHp enemyHpUi;
     [HideInInspector] protected int damage;
     [HideInInspector] protected int hp;
+    [HideInInspector] protected int maxHp;
     [HideInInspector] protected int range;
     [HideInInspector] protected float attackSpeed;
     [HideInInspector] protected float moveSpeed;
@@ -34,6 +37,7 @@ public abstract class Enemy : MonoBehaviour
         EnemyType data = EnemyData.enemyTypes[enemyName];
         damage = data.Damage;
         hp = data.Hp;
+        maxHp = data.Hp;
         range = data.Range;
         attackSpeed = data.AttackSpeed;
         moveSpeed = data.MoveSpeed;
@@ -63,6 +67,7 @@ public abstract class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         hp -= damage;
+        enemyHpUi.UpdateHp((float)hp / (float)maxHp);
         if (hp <= 0)
         {
             Die();
@@ -71,12 +76,14 @@ public abstract class Enemy : MonoBehaviour
 
     public void Heal(int healAmount)
     {
-        hp = Mathf.Min(hp + healAmount, EnemyData.enemyTypes[enemyName].Hp);
+        hp = Mathf.Min(hp + healAmount, maxHp);
+        enemyHpUi.UpdateHp((float)hp / (float)maxHp);
     }
 
     public void Die()
     {
         StopCoroutine(ShootAtTarget());
+        EnemyManager.Instance.enemies.Remove(this);
         enemyPath.moveSpeed = 0;
         moveSpeed = 0;
         isDying = true;

@@ -169,6 +169,8 @@ MonoBehaviour:
   hp: 0
   towerHp: {fileID: 2324540303047026687}
   shootingPoint: {fileID: 3803193435295961437}
+  bulletPrefab: {fileID: 5278945211313611959, guid: 5acd0ea2ef8adf9439f3d463811440ff,
+    type: 3}
 --- !u!1 &4607722678466912831
 GameObject:
   m_ObjectHideFlags: 0

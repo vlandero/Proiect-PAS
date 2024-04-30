@@ -40,7 +40,7 @@ public static class TowerData
                         Damage = 10,
                         Range = 50,
                         Health = 105,
-                        BulletSpeed = 10,
+                        BulletSpeed = 40,
                         AttackSpeed = 1.5f,
                         UpgradePrice = 100
                     },
@@ -49,7 +49,7 @@ public static class TowerData
                         Damage = 15,
                         Range = 50,
                         Health = 120,
-                        BulletSpeed = 10,
+                        BulletSpeed = 40,
                         AttackSpeed = 2.0f,
                         UpgradePrice = 100
                     }
