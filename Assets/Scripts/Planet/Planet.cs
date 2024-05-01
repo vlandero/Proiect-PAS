@@ -14,7 +14,7 @@ public class Planet : MonoBehaviour
 
     public Tower tower = null;
 
-    private Renderer planetMeshRenderer;
+    [SerializeField] public Renderer planetMeshRenderer;
 
     private void Start()
     {
