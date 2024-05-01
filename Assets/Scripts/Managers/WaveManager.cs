@@ -26,37 +26,33 @@ public class WaveManager : MonoBehaviour
 
     private void Awake()
     {
-        this.spawnerCount = waveSpawnersObject.transform.childCount;
-        this.spawners = new Transform[spawnerCount];
-        for (int i = 0; i < this.spawnerCount; ++i)
+        spawnerCount = waveSpawnersObject.transform.childCount;
+        spawners = new Transform[spawnerCount];
+        for (int i = 0; i < spawnerCount; ++i)
         {
             spawners[i] = waveSpawnersObject.transform.GetChild(i);
         }
     }
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
-        this.timeElapsed += Time.deltaTime;
+        timeElapsed += Time.deltaTime;
 
-        if (this.waveIndex < this.waves.Length && this.timeElapsed >= this.waves[this.waveIndex].time)
+        if (waveIndex < waves.Length && timeElapsed >= waves[waveIndex].time)
         {
-            Wave wave = this.waves[waveIndex];
-            var waveEnumerable = this.SpawnWave(wave);
+            Wave wave = waves[waveIndex];
+            var waveEnumerable = SpawnWave(wave);
 
             StartCoroutine(waveEnumerable);
 
-            ++this.waveIndex;
+            ++waveIndex;
         }
     }
 
     private void SpawnEnemy(GameObject enemyPrefab, int spawnerIndex)
     {
-        Instantiate(enemyPrefab, this.spawners[spawnerIndex]);
+        var enemy = Instantiate(enemyPrefab, spawners[spawnerIndex].position, Quaternion.identity);
+        EnemyManager.Instance.AddEnemy(enemy.GetComponent<Enemy>());
     }
 
     private IEnumerator SpawnWave(Wave wave)
@@ -64,7 +60,7 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < wave.enemyCount; ++i)
         {
             yield return new WaitForSeconds(wave.timeBetweenEnemies);
-            this.SpawnEnemy(wave.enemyPrefab, wave.spawnerIndex);
+            SpawnEnemy(wave.enemyPrefab, wave.spawnerIndex);
         }
     }
 }

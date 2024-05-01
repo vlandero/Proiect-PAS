@@ -11,6 +11,7 @@ public class EnemyPath : MonoBehaviour
     private Renderer sunRenderer;
     private Rigidbody rb;
     private bool stopped = false;
+    private float rotationSpeed = 5f;
 
     public bool IsStopped { get { return stopped; } }
 
@@ -43,6 +44,10 @@ public class EnemyPath : MonoBehaviour
         {
             direction.Normalize();
             rb.velocity = direction * moveSpeed;
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+
         }
     }
 }
