@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     public float timeToLive = 5f;
     public int damage = 0;
     public AttackTarget attackTarget;
+    public bool hit = false;
 
     private Vector3 direction;
     public void SetTarget(GameObject target)
@@ -56,9 +57,10 @@ public class Bullet : MonoBehaviour
         }
         else if(attackTarget == AttackTarget.Spaceship)
         {
-            if (other.CompareTag("Enemy"))
+            if (other.CompareTag("Enemy") && !hit)
             {
                 other.GetComponent<Enemy>().TakeDamage(damage);
+                hit = true;
                 Destroy(gameObject);
             }
         }

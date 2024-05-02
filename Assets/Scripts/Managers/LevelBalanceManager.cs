@@ -7,6 +7,8 @@ public class LevelBalanceManager : MonoBehaviour
     public static LevelBalanceManager Instance { get; private set; }
 
     public int sunHp = 100;
+    public int coins = 100;
+    
 
     void Awake()
     {
@@ -19,5 +21,11 @@ public class LevelBalanceManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void UpdateCoins(int amount)
+    {
+        coins += amount;
+        CanvasManager.instance.mainGui.SetCoins(coins);
     }
 }
