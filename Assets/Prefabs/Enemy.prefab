@@ -347,6 +347,7 @@ MonoBehaviour:
   enemyHpUi: {fileID: 924554203640530321}
   dissolveMaterial: {fileID: 2100000, guid: dc60a1e64de33bb44979dad0c2529fa1, type: 2}
   dissolveSpeed: 1
+  mesh: {fileID: 2938016341397897418}
   bulletPrefab: {fileID: 5278945211313611959, guid: 5acd0ea2ef8adf9439f3d463811440ff,
     type: 3}
   shootingPoint: {fileID: 7028108905979970772}

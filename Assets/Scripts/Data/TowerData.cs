@@ -42,7 +42,7 @@ public static class TowerData
                         Health = 105,
                         BulletSpeed = 40,
                         AttackSpeed = 1.5f,
-                        UpgradePrice = 100
+                        UpgradePrice = 30
                     },
                     new TowerLevel {
                         Level = 2,
@@ -51,7 +51,7 @@ public static class TowerData
                         Health = 120,
                         BulletSpeed = 40,
                         AttackSpeed = 2.0f,
-                        UpgradePrice = 100
+                        UpgradePrice = 50
                     }
                 }
             }

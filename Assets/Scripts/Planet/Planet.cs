@@ -26,6 +26,11 @@ public class Planet : MonoBehaviour
 
     public void CreateTower(TowerNameType t)
     {
+        TowerType towerType = TowerData.TowerTypes[t];
+        if(LevelBalanceManager.Instance.coins < towerType.Levels[0].UpgradePrice)
+        {
+            return;
+        }
         GameObject towerPrefab = PrefabManager.towerPrefabs[t];
         GameObject tower = Instantiate(towerPrefab, transform.position, Quaternion.identity);
         tower.transform.SetParent(transform);
@@ -36,7 +41,7 @@ public class Planet : MonoBehaviour
         addTowerButton.SetActive(false);
         selectTowerButton.SetActive(false);
         upgradeTowerButton.SetActive(true);
-        if (TowerData.TowerTypes[t].Levels.Count > 1)
+        if (towerType.Levels.Count > 1)
         {
             upgradeTowerIcon.SetUpgrade();
         }
@@ -44,6 +49,7 @@ public class Planet : MonoBehaviour
         {
             upgradeTowerIcon.SetLock();
         }
+        LevelBalanceManager.Instance.UpdateCoins(-towerType.Levels[0].UpgradePrice);
     }
 
     public void DestroyTower()

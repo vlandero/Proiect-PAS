@@ -98,6 +98,10 @@ public class Tower : MonoBehaviour
         TowerType towerType = TowerData.TowerTypes[towerName];
         if(level < towerType.Levels.Count)
         {
+            if (towerType.Levels[level].UpgradePrice > LevelBalanceManager.Instance.coins)
+            {
+                return;
+            }
             level++;
             damage = towerType.Levels[level - 1].Damage;
             range = towerType.Levels[level - 1].Range;
@@ -106,6 +110,7 @@ public class Tower : MonoBehaviour
             maxHealth = towerType.Levels[level - 1].Health;
             hp = maxHealth;
             towerHp.UpdateHp(1);
+            LevelBalanceManager.Instance.UpdateCoins(-upgradePrice);
         }
         if(level == towerType.Levels.Count)
         {

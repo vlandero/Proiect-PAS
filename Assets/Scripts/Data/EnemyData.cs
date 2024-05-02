@@ -19,6 +19,7 @@ public class EnemyType
     public int HealPower;
     public float HealSpeed;
     public float MoveSpeed;
+    public int Reward;
 }
 
 public static class EnemyData
@@ -33,7 +34,8 @@ public static class EnemyData
                 AttackSpeed = 1.2f,
                 HealPower = 3,
                 HealSpeed = 10,
-                MoveSpeed = 5
+                MoveSpeed = 5,
+                Reward = 10
             }
         },
         {
@@ -44,7 +46,8 @@ public static class EnemyData
                 AttackSpeed = 1.2f,
                 HealPower = 3,
                 HealSpeed = 10,
-                MoveSpeed = 5
+                MoveSpeed = 5,
+                Reward = 10
             }
         },
         {
@@ -55,7 +58,8 @@ public static class EnemyData
                 AttackSpeed = 1.2f,
                 HealPower = 3,
                 HealSpeed = 10,
-                MoveSpeed = 5
+                MoveSpeed = 5,
+                Reward = 10
             }
         },
     };

@@ -20,7 +20,9 @@ public abstract class Enemy : MonoBehaviour
     protected EnemyPath enemyPath;
 
     [SerializeField] protected Material dissolveMaterial;
+    protected Material dissolveMaterialInstance;
     [SerializeField] protected float dissolveSpeed = 1f;
+    [SerializeField] protected GameObject mesh;
     protected float dissolveAmount = 0f;
     protected float dissolveAmountTarget = 1f;
     protected bool isDying = false;
@@ -43,7 +45,13 @@ public abstract class Enemy : MonoBehaviour
         moveSpeed = data.MoveSpeed;
 
         enemyPath.moveSpeed = moveSpeed;
-        dissolveMaterial.SetFloat("_Dissolve", dissolveAmount);
+        dissolveMaterialInstance = Instantiate(dissolveMaterial);
+        var meshChildren = mesh.transform.childCount;
+        for(int i = 0; i < meshChildren; i++)
+        {
+            mesh.transform.GetChild(i).GetComponent<Renderer>().material = dissolveMaterialInstance;
+        }
+        dissolveMaterialInstance.SetFloat("_Dissolve", dissolveAmount);
 
         StartCoroutine(ShootAtTarget());
     }
@@ -53,9 +61,10 @@ public abstract class Enemy : MonoBehaviour
         if(isDying)
         {
             dissolveAmount = Mathf.Lerp(dissolveAmount, dissolveAmountTarget, Time.deltaTime * dissolveSpeed);
-            dissolveMaterial.SetFloat("_Dissolve", dissolveAmount);
+            dissolveMaterialInstance.SetFloat("_Dissolve", dissolveAmount);
             if(dissolveAmount >= 0.95f)
             {
+                Destroy(dissolveMaterialInstance);
                 Destroy(gameObject);
             }
             return;
@@ -82,7 +91,12 @@ public abstract class Enemy : MonoBehaviour
 
     public void Die()
     {
+        if(isDying)
+        {
+            return;
+        }
         StopCoroutine(ShootAtTarget());
+        LevelBalanceManager.Instance.UpdateCoins(EnemyData.enemyTypes[enemyName].Reward);
         EnemyManager.Instance.enemies.Remove(this);
         enemyPath.moveSpeed = 0;
         moveSpeed = 0;
