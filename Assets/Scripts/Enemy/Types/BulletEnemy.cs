@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class BulletEnemy : Enemy
 {
+    [Header("Bullet Enemy")]
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform shootingPoint;
 
-    public int bulletSpeed;
+    [HideInInspector] public int bulletSpeed;
     protected override IEnumerator ShootAtTarget()
     {
         while (!isDying)

@@ -3,9 +3,6 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    public EnemyNameType enemyName;
-    public Transform targetPoint;
-    [SerializeField] private TowerHp enemyHpUi;
     [HideInInspector] protected int damage;
     [HideInInspector] protected int hp;
     [HideInInspector] protected int maxHp;
@@ -14,18 +11,25 @@ public abstract class Enemy : MonoBehaviour
     [HideInInspector] protected float moveSpeed;
 
     [HideInInspector] protected int stoppingDistance = 2;
+    public EnemyNameType enemyName;
+    [Header("References")]
+    public Transform targetPoint;
+    [SerializeField] private TowerHp enemyHpUi;
+    
 
     protected Planet[] planets;
     protected Sun sun;
     protected EnemyPathNavMesh enemyPath;
 
-    [SerializeField] protected Material dissolveMaterial;
     protected Material dissolveMaterialInstance;
-    [SerializeField] protected float dissolveSpeed = 1f;
-    [SerializeField] protected GameObject mesh;
     protected float dissolveAmount = 0f;
     protected float dissolveAmountTarget = 1f;
     protected bool isDying = false;
+
+    [Header("Dissolve")]
+    [SerializeField] protected GameObject mesh;
+    [SerializeField] protected float dissolveSpeed = 1f;
+    [SerializeField] protected Material dissolveMaterial;
 
     public bool IsDying { get { return isDying; } }
 
@@ -36,7 +40,7 @@ public abstract class Enemy : MonoBehaviour
         enemyPath = GetComponent<EnemyPathNavMesh>();
         enemyPath.stoppingDistance = stoppingDistance;
 
-        EnemyType data = EnemyData.enemyTypes[enemyName];
+        EnemyType data = PrefabManager.enemyTypes[enemyName];
         damage = data.Damage;
         hp = data.Hp;
         maxHp = data.Hp;
@@ -97,7 +101,7 @@ public abstract class Enemy : MonoBehaviour
             return;
         }
         StopCoroutine(ShootAtTarget());
-        LevelBalanceManager.Instance.UpdateCoins(EnemyData.enemyTypes[enemyName].Reward);
+        LevelBalanceManager.Instance.UpdateCoins(PrefabManager.enemyTypes[enemyName].Reward);
         EnemyManager.Instance.enemies.Remove(this);
         enemyPath.moveSpeed = 0;
         enemyPath.stopped = true;

@@ -11,7 +11,7 @@ public class TowerElement : MonoBehaviour
 
     public void UpdateName(TowerNameType t)
     {
-        towerName.text = TowerData.TowerTypes[t].Name;
+        towerName.text = PrefabManager.towerTypes[t].Name;
         towerType = t;
     }
 

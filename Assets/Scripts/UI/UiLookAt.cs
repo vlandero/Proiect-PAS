@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class UiLookAt : MonoBehaviour
 {
+    private RectTransform canvas;
+    private void Start()
+    {
+        canvas = GetComponent<RectTransform>();
+    }
     private void LateUpdate()
     {
-        transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
+        transform.LookAt(canvas.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
     }
 }

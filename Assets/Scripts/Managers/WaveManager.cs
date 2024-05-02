@@ -11,7 +11,6 @@ struct Wave
     public int enemyCount;
     public int spawnerIndex;
     public float timeBetweenEnemies;
-    public GameObject enemyPrefab;
 }
 
 public class WaveManager : MonoBehaviour
@@ -60,7 +59,7 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < wave.enemyCount; ++i)
         {
             yield return new WaitForSeconds(wave.timeBetweenEnemies);
-            SpawnEnemy(wave.enemyPrefab, wave.spawnerIndex);
+            SpawnEnemy(PrefabManager.enemyPrefabs[wave.enemyType], wave.spawnerIndex);
         }
     }
 }

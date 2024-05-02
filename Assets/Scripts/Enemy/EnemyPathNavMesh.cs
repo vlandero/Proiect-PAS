@@ -7,11 +7,11 @@ public class EnemyPathNavMesh : MonoBehaviour
 {
     [HideInInspector] public float moveSpeed = 5f;
     [HideInInspector] public float stoppingDistance = 5f;
+    [HideInInspector] public bool stopped = false;
 
     private Sun sun;
     private Renderer sunRenderer;
     private Rigidbody rb;
-    public bool stopped = false;
 
     public NavMeshAgent agent;
 

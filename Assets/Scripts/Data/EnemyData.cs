@@ -10,7 +10,8 @@ public enum EnemyNameType
     AstroAssassin
 }
 
-public class EnemyType
+[CreateAssetMenu(fileName = "EnemyData", menuName = "ScriptableObjects/EnemyData")]
+public class EnemyType : ScriptableObject
 {
     public int Damage;
     public int Hp;
@@ -20,47 +21,4 @@ public class EnemyType
     public float HealSpeed;
     public float MoveSpeed;
     public int Reward;
-}
-
-public static class EnemyData
-{
-    public static Dictionary<EnemyNameType, EnemyType> enemyTypes = new Dictionary<EnemyNameType, EnemyType>
-    {
-        {
-            EnemyNameType.NebulaRaider, new EnemyType {
-                Damage = 10,
-                Hp = 20,
-                Range = 30,
-                AttackSpeed = 1.2f,
-                HealPower = 3,
-                HealSpeed = 10,
-                MoveSpeed = 5,
-                Reward = 10
-            }
-        },
-        {
-            EnemyNameType.LunarLurker, new EnemyType {
-                Damage = 10,
-                Hp = 20,
-                Range = 30,
-                AttackSpeed = 1.2f,
-                HealPower = 3,
-                HealSpeed = 10,
-                MoveSpeed = 5,
-                Reward = 10
-            }
-        },
-        {
-            EnemyNameType.AstroAssassin, new EnemyType {
-                Damage = 10,
-                Hp = 20,
-                Range = 30,
-                AttackSpeed = 1.2f,
-                HealPower = 3,
-                HealSpeed = 10,
-                MoveSpeed = 5,
-                Reward = 10
-            }
-        },
-    };
 }

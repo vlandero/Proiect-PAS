@@ -26,7 +26,7 @@ public class Tower : MonoBehaviour
     private void Start()
     {
         parentPlanet = GetComponentInParent<Planet>();
-        TowerType towerType = TowerData.TowerTypes[towerName];
+        TowerType towerType = PrefabManager.towerTypes[towerName];
         level = towerType.Levels[0].Level;
         damage = towerType.Levels[0].Damage;
         range = towerType.Levels[0].Range;
@@ -37,6 +37,7 @@ public class Tower : MonoBehaviour
         hp = maxHealth;
 
         StartCoroutine(Shoot());
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 
     private Enemy FindClosestEnemyInRange()
@@ -95,7 +96,7 @@ public class Tower : MonoBehaviour
 
     public void Upgrade()
     {
-        TowerType towerType = TowerData.TowerTypes[towerName];
+        TowerType towerType = PrefabManager.towerTypes[towerName];
         if(level < towerType.Levels.Count)
         {
             if (towerType.Levels[level].UpgradePrice > LevelBalanceManager.Instance.coins)
