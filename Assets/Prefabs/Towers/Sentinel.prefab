@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 3063999578333558423}
   - component: {fileID: 6532987256655070172}
   - component: {fileID: 2880542938714979827}
+  - component: {fileID: 610078135206160351}
   m_Layer: 0
   m_Name: Sentinel
   m_TagString: Tower
@@ -171,6 +172,18 @@ MonoBehaviour:
   shootingPoint: {fileID: 3803193435295961437}
   bulletPrefab: {fileID: 5278945211313611959, guid: 5acd0ea2ef8adf9439f3d463811440ff,
     type: 3}
+--- !u!114 &610078135206160351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240032353581553011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88ef1ccdb9b8a404eae07b36ce74d662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4607722678466912831
 GameObject:
   m_ObjectHideFlags: 0

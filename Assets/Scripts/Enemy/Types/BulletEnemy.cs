@@ -11,7 +11,7 @@ public class BulletEnemy : Enemy
     {
         while (!isDying)
         {
-            if (enemyPath.IsStopped)
+            if (enemyPath.stopped)
             {
                 Shoot(sun);
             }

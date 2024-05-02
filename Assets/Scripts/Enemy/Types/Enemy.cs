@@ -17,7 +17,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected Planet[] planets;
     protected Sun sun;
-    protected EnemyPath enemyPath;
+    protected EnemyPathNavMesh enemyPath;
 
     [SerializeField] protected Material dissolveMaterial;
     protected Material dissolveMaterialInstance;
@@ -33,7 +33,7 @@ public abstract class Enemy : MonoBehaviour
     {
         planets = PlanetManager.Instance.planets;
         sun = PlanetManager.Instance.sun;
-        enemyPath = GetComponent<EnemyPath>();
+        enemyPath = GetComponent<EnemyPathNavMesh>();
         enemyPath.stoppingDistance = stoppingDistance;
 
         EnemyType data = EnemyData.enemyTypes[enemyName];
@@ -45,6 +45,7 @@ public abstract class Enemy : MonoBehaviour
         moveSpeed = data.MoveSpeed;
 
         enemyPath.moveSpeed = moveSpeed;
+        enemyPath.agent.speed = moveSpeed;
         dissolveMaterialInstance = Instantiate(dissolveMaterial);
         var meshChildren = mesh.transform.childCount;
         for(int i = 0; i < meshChildren; i++)
@@ -99,6 +100,8 @@ public abstract class Enemy : MonoBehaviour
         LevelBalanceManager.Instance.UpdateCoins(EnemyData.enemyTypes[enemyName].Reward);
         EnemyManager.Instance.enemies.Remove(this);
         enemyPath.moveSpeed = 0;
+        enemyPath.stopped = true;
+        enemyPath.agent.enabled = false;
         moveSpeed = 0;
         isDying = true;
     }

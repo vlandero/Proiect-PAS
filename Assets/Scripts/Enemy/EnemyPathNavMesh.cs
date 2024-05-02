@@ -1,8 +1,9 @@
-using UnityEngine;
 using System.Collections;
-using UnityEditor;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 
-public class EnemyPath : MonoBehaviour
+public class EnemyPathNavMesh : MonoBehaviour
 {
     [HideInInspector] public float moveSpeed = 5f;
     [HideInInspector] public float stoppingDistance = 5f;
@@ -10,10 +11,9 @@ public class EnemyPath : MonoBehaviour
     private Sun sun;
     private Renderer sunRenderer;
     private Rigidbody rb;
-    private bool stopped = false;
-    private float rotationSpeed = 5f;
+    public bool stopped = false;
 
-    public bool IsStopped { get { return stopped; } }
+    public NavMeshAgent agent;
 
     void Start()
     {
@@ -22,32 +22,27 @@ public class EnemyPath : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         rb.useGravity = false;
+        agent.enabled = true;
     }
 
     void FixedUpdate()
     {
-        MoveTowardsTarget();
+        CheckForStop();
+        if (!stopped)
+        {
+            agent.SetDestination(sun.transform.position);
+        }
     }
 
-    void MoveTowardsTarget()
+    void CheckForStop()
     {
         Vector3 direction = sun.transform.position - transform.position;
 
         float distanceToSun = direction.magnitude;
         if (distanceToSun <= stoppingDistance + sunRenderer.bounds.size.x / 2 && !stopped)
         {
-            rb.velocity = Vector3.zero;
             stopped = true;
-        }
-
-        if (!stopped)
-        {
-            direction.Normalize();
-            rb.velocity = direction * moveSpeed;
-
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-
+            agent.enabled = false;
         }
     }
 }
