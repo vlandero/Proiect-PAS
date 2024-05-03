@@ -12,11 +12,13 @@ public class SunDamage : MonoBehaviour
     {
         sunDamageVisual = GetComponent<SunDamageVisual>();
         hp = maxHp = LevelBalanceManager.Instance.sunHp;
+        CanvasManager.instance.mainGui.sunHp.UpdateSunHp(hp);
     }
 
     public void TakeDamage(int damage)
     {
         hp = Mathf.Max(0, hp - damage);
+        CanvasManager.instance.mainGui.sunHp.UpdateSunHp(hp);
         sunDamageVisual.CalculatePixelatedBasedOnHp(hp, maxHp);
         if (hp == 0)
         {
