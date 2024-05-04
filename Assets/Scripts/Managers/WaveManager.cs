@@ -11,21 +11,34 @@ struct Wave
     public int enemyCount;
     public int spawnerIndex;
     public float timeBetweenEnemies;
-    public GameObject enemyPrefab;
 }
 
 public class WaveManager : MonoBehaviour
 {
+    public static WaveManager Instance { get; private set; }
     [SerializeField] private Wave[] waves;
     [SerializeField] private GameObject waveSpawnersObject;
 
+    public float timeToShowMarker = 30f;
+
     private Transform[] spawners;
+    private List<WaypointData> waypoints = new List<WaypointData>();
     private int spawnerCount;
     private int waveIndex = 0;
     private float timeElapsed = 0;
+    private Waypoint cameraWaypoint;
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
         spawnerCount = waveSpawnersObject.transform.childCount;
         spawners = new Transform[spawnerCount];
         for (int i = 0; i < spawnerCount; ++i)
@@ -34,9 +47,41 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        cameraWaypoint = Camera.main.GetComponent<Waypoint>();
+    }
+
     private void Update()
     {
         timeElapsed += Time.deltaTime;
+
+        for (int i = 0; i < waves.Length; ++i)
+        {
+            if (timeElapsed >= waves[i].time - timeToShowMarker)
+            {
+                
+                bool waypointAdded = waypoints.Count > i;
+                if (!waypointAdded)
+                {
+                    var wave = waves[i];
+                    var waypoint = new WaypointData
+                    {
+                        target = spawners[wave.spawnerIndex],
+                        waypoint = Instantiate(CanvasManager.instance.mainGui.indicatorPrefab, CanvasManager.instance.mainGui.GetComponent<RectTransform>())
+                    };
+                    var texts = waypoint.waypoint.GetComponentsInChildren<WaypointText>();
+                    foreach (var text in texts)
+                    {
+                        text.SetTimer(wave.time - timeElapsed);
+                    }
+                    waypoints.Add(waypoint);
+                    cameraWaypoint.AddWaypoint(waypoint);
+                }
+            }
+        }
+
+        
 
         if (waveIndex < waves.Length && timeElapsed >= waves[waveIndex].time)
         {
@@ -44,8 +89,14 @@ public class WaveManager : MonoBehaviour
             var waveEnumerable = SpawnWave(wave);
 
             StartCoroutine(waveEnumerable);
+            cameraWaypoint.RemoveWaypoint(waypoints[waveIndex]);
 
             ++waveIndex;
+        }
+
+        if(waveIndex == waves.Length && EnemyManager.Instance.enemies.Count == 0)
+        {
+            CanvasManager.instance.ShowGameOverWin();
         }
     }
 
@@ -60,7 +111,7 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < wave.enemyCount; ++i)
         {
             yield return new WaitForSeconds(wave.timeBetweenEnemies);
-            SpawnEnemy(wave.enemyPrefab, wave.spawnerIndex);
+            SpawnEnemy(PrefabManager.enemyPrefabs[wave.enemyType], wave.spawnerIndex);
         }
     }
 }

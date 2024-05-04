@@ -5,7 +5,7 @@ using UnityEngine;
 public class SunDamageVisual : MonoBehaviour
 {
     [SerializeField] Material material;
-    [SerializeField] float pixelateSpeed = 15f;
+    float pixelateSpeed = 15f;
 
     private float pixelateAmount;
     private float pixelateAmountTarget;

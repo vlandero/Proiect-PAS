@@ -11,7 +11,7 @@ public class SelectTowerPanel : MonoBehaviour
 
     private void Awake()
     {
-        var towers = TowerData.TowerTypes.Keys.ToArray();
+        var towers = PrefabManager.towerTypes.Keys.ToArray();
         foreach (var tower in towers)
         {
             var towerElement = Instantiate(towerElementPrefab, content.transform);

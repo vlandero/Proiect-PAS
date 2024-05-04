@@ -14,7 +14,11 @@ public class Planet : MonoBehaviour
 
     public Tower tower = null;
 
-    private Renderer planetMeshRenderer;
+    [SerializeField] public Renderer planetMeshRenderer;
+    [Header("Stats")]
+    public int orbitSpeed = 10;
+
+    private Sun sunRef;
 
     private void Start()
     {
@@ -22,11 +26,27 @@ public class Planet : MonoBehaviour
         addTowerButton.SetActive(true);
         selectTowerButton.SetActive(false);
         upgradeTowerButton.SetActive(false);
+
+        sunRef = PlanetManager.Instance.sun;
+    }
+
+    private void Update()
+    {
+        RotateAroundSun();
+    }
+
+    private void RotateAroundSun()
+    {
+        if (sunRef != null)
+        {
+
+            transform.RotateAround(sunRef.transform.position, Vector3.up, orbitSpeed * Time.deltaTime);
+        }
     }
 
     public void CreateTower(TowerNameType t)
     {
-        TowerType towerType = TowerData.TowerTypes[t];
+        TowerType towerType = PrefabManager.towerTypes[t];
         if(LevelBalanceManager.Instance.coins < towerType.Levels[0].UpgradePrice)
         {
             return;
@@ -80,10 +100,10 @@ public class Planet : MonoBehaviour
 
     public void UpgradeTower()
     {
-        if(tower != null && tower.level < TowerData.TowerTypes[tower.towerName].Levels.Count)
+        if(tower != null && tower.level < PrefabManager.towerTypes[tower.towerName].Levels.Count)
         {
             tower.Upgrade();
-            CanvasManager.instance.mainGui.SetTowerStats(TowerData.TowerTypes[tower.towerName].Levels[tower.level - 1]);
+            CanvasManager.instance.mainGui.SetTowerStats(PrefabManager.towerTypes[tower.towerName].Levels[tower.level - 1]);
         }
     }
 }

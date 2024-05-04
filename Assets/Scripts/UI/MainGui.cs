@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainGui : MonoBehaviour
 {
     public GameObject towerStatsPanel;
+    public Image indicatorPrefab;
+    public SunHp sunHp;
 
     private TextMeshProUGUI[] towerStatsText;
     [SerializeField] private CoinsUi coinsUi;
