@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum WaypointTextType
+{
+    Enemy,
+    Time
+}
+
 public class WaypointText : MonoBehaviour
 {
     private float timer = 30;
 
     private TextMeshProUGUI text;
+    [SerializeField] private WaypointTextType type;
 
     private void Start()
     {
@@ -21,14 +28,18 @@ public class WaypointText : MonoBehaviour
 
     private void Update()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+        if(type == WaypointTextType.Time)
         {
-            text.text = "0";
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                text.text = "0";
+            }
+            else
+            {
+                text.text = timer.ToString("F0");
+            }
         }
-        else
-        {
-            text.text = timer.ToString("F0");
-        }
+        
     }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   Hp: 20
   Range: 30
   AttackSpeed: 1.2
-  HealPower: 0
-  HealSpeed: 0
+  HealPower: 10
+  HealSpeed: 3
   MoveSpeed: 5
   Reward: 10

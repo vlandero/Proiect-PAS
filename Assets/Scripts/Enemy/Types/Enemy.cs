@@ -3,14 +3,16 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [HideInInspector] protected int damage;
-    [HideInInspector] protected int hp;
-    [HideInInspector] protected int maxHp;
-    [HideInInspector] protected int range;
-    [HideInInspector] protected float attackSpeed;
-    [HideInInspector] protected float moveSpeed;
+    protected int damage;
+    protected int hp;
+    protected int maxHp;
+    protected int range;
+    protected float attackSpeed;
+    protected float moveSpeed;
+    protected float healSpeed;
+    protected int healPower;
 
-    [HideInInspector] protected int stoppingDistance = 2;
+    protected int stoppingDistance = 2;
     public EnemyNameType enemyName;
     [Header("References")]
     public Transform targetPoint;
@@ -47,6 +49,8 @@ public abstract class Enemy : MonoBehaviour
         range = data.Range;
         attackSpeed = data.AttackSpeed;
         moveSpeed = data.MoveSpeed;
+        healSpeed = data.HealSpeed;
+        healPower = data.HealPower;
 
         enemyPath.moveSpeed = moveSpeed;
         enemyPath.agent.speed = moveSpeed;
@@ -59,6 +63,16 @@ public abstract class Enemy : MonoBehaviour
         dissolveMaterialInstance.SetFloat("_Dissolve", dissolveAmount);
 
         StartCoroutine(ShootAtTarget());
+        StartCoroutine(HealOverTime());
+    }
+
+    private IEnumerator HealOverTime()
+    {
+        while (!isDying)
+        {
+            yield return new WaitForSeconds(healSpeed);
+            Heal(healPower);
+        }
     }
 
     public void Update()
@@ -101,6 +115,7 @@ public abstract class Enemy : MonoBehaviour
             return;
         }
         StopCoroutine(ShootAtTarget());
+        StopCoroutine(HealOverTime());
         LevelBalanceManager.Instance.UpdateCoins(PrefabManager.enemyTypes[enemyName].Reward);
         EnemyManager.Instance.enemies.Remove(this);
         enemyPath.moveSpeed = 0;
