@@ -31,6 +31,11 @@ public class CanvasManager : MonoBehaviour
         gameOverCanvas.ShowLose();
     }
 
+    public void ShowGameOverWin()
+    {
+        gameOverCanvas.ShowWin();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !gameOverCanvas.IsGameOver)

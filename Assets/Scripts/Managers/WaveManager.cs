@@ -93,6 +93,11 @@ public class WaveManager : MonoBehaviour
 
             ++waveIndex;
         }
+
+        if(waveIndex == waves.Length && EnemyManager.Instance.enemies.Count == 0)
+        {
+            CanvasManager.instance.ShowGameOverWin();
+        }
     }
 
     private void SpawnEnemy(GameObject enemyPrefab, int spawnerIndex)
