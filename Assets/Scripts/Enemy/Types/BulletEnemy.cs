@@ -38,7 +38,7 @@ public class BulletEnemy : Enemy
                     Shoot(sun);
                 }
             }
-            yield return new WaitForSeconds(attackSpeed);
+            yield return new WaitForSeconds(1 / attackSpeed);
         }
     }
 

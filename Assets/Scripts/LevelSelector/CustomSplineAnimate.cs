@@ -11,6 +11,7 @@ public class CustomSplineAnimate : MonoBehaviour
     public float moveSpeed = 1f;
     public float rotationSpeed = 5f;
     public int renderQueue = 3000;
+    public GameObject notExistentLevelText;
 
     private float currentDistance = 0f;
     private int currentPortalIndex = 0;
@@ -23,8 +24,14 @@ public class CustomSplineAnimate : MonoBehaviour
     {
         totalPortals = spline.Spline.Count - 1;
         Time.timeScale = 1;
-        rend.material.renderQueue = renderQueue;
-        
+        rend.material.renderQueue = renderQueue;   
+    }
+
+    private IEnumerator EnableNotExistentText()
+    {
+        notExistentLevelText.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        notExistentLevelText.SetActive(false);
     }
 
     void Update()
@@ -47,9 +54,16 @@ public class CustomSplineAnimate : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if(isMoving) return;
-            isMoving = true;
-            animator.SetTrigger("EnterLevel");
-            StartCoroutine(SwitchToLevelScene());
+            if (currentPortalIndex + 2 >= SceneManager.sceneCountInBuildSettings)
+            {
+                StartCoroutine(EnableNotExistentText());
+            }
+            else
+            {
+                isMoving = true;
+                animator.SetTrigger("EnterLevel");
+                StartCoroutine(SwitchToLevelScene());
+            }
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {

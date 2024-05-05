@@ -8,7 +8,7 @@ public class BuildButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private TowerElement towerElement;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CanvasManager.instance.mainGui.SetTowerStats(PrefabManager.towerTypes[towerElement.towerType].Levels[0]);
+        CanvasManager.instance.mainGui.SetTowerStats(PrefabManager.towerTypes[towerElement.towerType].Levels[0], PrefabManager.towerTypes[towerElement.towerType].Name);
         CanvasManager.instance.mainGui.ToggleTowerStatsPanel(true);
     }
 

@@ -507,6 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpBar: {fileID: 1338570273418456101}
+  hpCanvas: {fileID: 879720815894738696}
 --- !u!1 &6551881369917831381
 GameObject:
   m_ObjectHideFlags: 0

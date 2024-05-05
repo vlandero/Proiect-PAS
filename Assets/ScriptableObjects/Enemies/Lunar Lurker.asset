@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Lunar Lurker
   m_EditorClassIdentifier: Assembly-CSharp::EnemyType
-  Damage: 10
-  Hp: 20
+  Damage: 5
+  Hp: 300
   Range: 30
-  AttackSpeed: 1.2
-  HealPower: 0
-  HealSpeed: 0
-  MoveSpeed: 5
-  Reward: 10
+  AttackSpeed: 2
+  HealPower: 10
+  HealSpeed: 2
+  MoveSpeed: 3
+  BulletSpeed: 45
+  Reward: 40

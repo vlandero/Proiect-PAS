@@ -15,23 +15,23 @@ MonoBehaviour:
   Name: Frostbite
   Levels:
   - Level: 1
-    Damage: 10
+    Damage: 30
     Range: 20
-    Health: 50
+    Health: 160
     BulletSpeed: 10
     UpgradePrice: 30
-    AttackSpeed: 1.5
+    AttackSpeed: 0.8
   - Level: 2
-    Damage: 15
+    Damage: 35
     Range: 25
-    Health: 115
+    Health: 185
     BulletSpeed: 10
-    UpgradePrice: 100
+    UpgradePrice: 40
     AttackSpeed: 1.8
   - Level: 3
-    Damage: 18
+    Damage: 60
     Range: 50
     Health: 240
-    BulletSpeed: 24
-    UpgradePrice: 270
-    AttackSpeed: 4
+    BulletSpeed: 60
+    UpgradePrice: 175
+    AttackSpeed: 2

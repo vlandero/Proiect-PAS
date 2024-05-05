@@ -16,6 +16,8 @@ public class Tower : MonoBehaviour
     public float maxHealth;
     public float hp;
 
+    [HideInInspector] public Renderer towerRenderer;
+
     [Header("References")]
     [SerializeField] private TowerHp towerHp;
     [SerializeField] private Transform shootingPoint;
@@ -38,6 +40,8 @@ public class Tower : MonoBehaviour
 
         StartCoroutine(Shoot());
         transform.localRotation = Quaternion.Euler(0, 0, 0);
+        towerRenderer = GetComponent<Renderer>();
+        towerRenderer.material = MaterialsManager.Instance.materials[0];
     }
 
     private Enemy FindClosestEnemyInRange()
@@ -80,7 +84,7 @@ public class Tower : MonoBehaviour
                     bulletComponent.SetTarget(closestEnemy.targetPoint.gameObject);
                 }
             }
-            yield return new WaitForSeconds(attackSpeed);
+            yield return new WaitForSeconds(1 / attackSpeed);
         }
     }
 
@@ -109,6 +113,7 @@ public class Tower : MonoBehaviour
             upgradePrice = towerType.Levels[level - 1].UpgradePrice;
             attackSpeed = towerType.Levels[level - 1].AttackSpeed;
             maxHealth = towerType.Levels[level - 1].Health;
+            towerRenderer.material = MaterialsManager.Instance.materials[level - 1];
             hp = maxHealth;
             towerHp.UpdateHp(1);
             LevelBalanceManager.Instance.UpdateCoins(-upgradePrice);

@@ -114,6 +114,7 @@ public abstract class Enemy : MonoBehaviour
         {
             return;
         }
+        enemyHpUi.hpCanvas.enabled = false;
         StopCoroutine(ShootAtTarget());
         StopCoroutine(HealOverTime());
         LevelBalanceManager.Instance.UpdateCoins(PrefabManager.enemyTypes[enemyName].Reward);

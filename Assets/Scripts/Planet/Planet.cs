@@ -103,7 +103,7 @@ public class Planet : MonoBehaviour
         if(tower != null && tower.level < PrefabManager.towerTypes[tower.towerName].Levels.Count)
         {
             tower.Upgrade();
-            CanvasManager.instance.mainGui.SetTowerStats(PrefabManager.towerTypes[tower.towerName].Levels[tower.level - 1]);
+            CanvasManager.instance.mainGui.SetTowerStats(PrefabManager.towerTypes[tower.towerName].Levels[tower.level - 1], PrefabManager.towerTypes[tower.towerName].Name);
         }
     }
 }

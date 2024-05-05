@@ -71,7 +71,7 @@ public class WaveManager : MonoBehaviour
                         waypoint = Instantiate(CanvasManager.instance.mainGui.indicatorPrefab, CanvasManager.instance.mainGui.GetComponent<RectTransform>())
                     };
                     Indicator indicator = waypoint.waypoint.GetComponent<Indicator>();
-                    indicator.enemyTypeText.text = wave.enemyType.ToString();
+                    indicator.enemyTypeText.text = wave.enemyCount + " " + wave.enemyType.ToString();
                     indicator.timeLeftText.GetComponent<WaypointText>().SetTimer(wave.time - timeElapsed);
                     waypoints.Add(waypoint);
                     cameraWaypoint.AddWaypoint(waypoint);
@@ -88,10 +88,10 @@ public class WaveManager : MonoBehaviour
             cameraWaypoint.RemoveWaypoint(waypoints[waveIndex]);
 
             ++waveIndex;
-            if (waveIndex == waves.Length && EnemyManager.Instance.enemies.Count == 0)
-            {
-                StartCoroutine(CheckForWin());
-            }
+        }
+        if (waveIndex == waves.Length && EnemyManager.Instance.enemies.Count == 0)
+        {
+            StartCoroutine(CheckForWin());
         }
     }
 

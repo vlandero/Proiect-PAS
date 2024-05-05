@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Astro Assassin
   m_EditorClassIdentifier: Assembly-CSharp::EnemyType
-  Damage: 10
-  Hp: 20
-  Range: 30
-  AttackSpeed: 1.2
-  HealPower: 10
-  HealSpeed: 3
-  MoveSpeed: 5
-  Reward: 10
+  Damage: 30
+  Hp: 15
+  Range: 45
+  AttackSpeed: 3
+  HealPower: 0
+  HealSpeed: 0
+  MoveSpeed: 10
+  BulletSpeed: 40
+  Reward: 35
