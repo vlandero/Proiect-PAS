@@ -7,7 +7,14 @@ public class BulletEnemy : Enemy
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform shootingPoint;
 
-    [HideInInspector] public int bulletSpeed;
+    [HideInInspector] public float bulletSpeed;
+
+    private void Start()
+    {
+        base.Start();
+        EnemyType data = PrefabManager.enemyTypes[enemyName];
+        bulletSpeed = data.BulletSpeed;
+    }
     protected override IEnumerator ShootAtTarget()
     {
         while (!isDying)
@@ -31,7 +38,7 @@ public class BulletEnemy : Enemy
                     Shoot(sun);
                 }
             }
-            yield return new WaitForSeconds(attackSpeed);
+            yield return new WaitForSeconds(1 / attackSpeed);
         }
     }
 

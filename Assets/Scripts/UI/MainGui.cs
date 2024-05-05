@@ -19,26 +19,28 @@ public class MainGui : MonoBehaviour
         towerStatsText = towerStatsPanel.GetComponentsInChildren<TextMeshProUGUI>();
     }
 
-    public void SetTowerStats(TowerLevel tower)
+    public void SetTowerStats(TowerLevel tower, string name)
     {
-        towerStatsText[0].text = "Level: " + tower.Level;
-        towerStatsText[1].text = "Damage: " + tower.Damage;
-        towerStatsText[2].text = "Range: " + tower.Range;
-        towerStatsText[3].text = "Health: " + tower.Health;
-        towerStatsText[4].text = "Bullet Speed: " + tower.BulletSpeed;
-        towerStatsText[5].text = "Attack Speed: " + tower.AttackSpeed;
-        towerStatsText[6].text = "Cost: " + tower.UpgradePrice;
+        towerStatsText[0].text = name;
+        towerStatsText[1].text = "Level: " + tower.Level;
+        towerStatsText[2].text = "Damage: " + tower.Damage;
+        towerStatsText[3].text = "Range: " + tower.Range;
+        towerStatsText[4].text = "Health: " + tower.Health;
+        towerStatsText[5].text = "Bullet Speed: " + tower.BulletSpeed;
+        towerStatsText[6].text = "Attack Speed: " + tower.AttackSpeed;
+        towerStatsText[7].text = "Cost: " + tower.UpgradePrice;
     }
 
-    public void SetTowerStats(TowerLevel prevLevel, TowerLevel nextLevel)
+    public void SetTowerStats(TowerLevel prevLevel, TowerLevel nextLevel, string name)
     {
-        towerStatsText[0].text = "Level: " + prevLevel.Level + " -> " + nextLevel.Level;
-        towerStatsText[1].text = "Damage: " + prevLevel.Damage + " -> " + nextLevel.Damage + " (" + (nextLevel.Damage - prevLevel.Damage) + ")";
-        towerStatsText[2].text = "Range: " + prevLevel.Range + " -> " + nextLevel.Range + " (" + (nextLevel.Range - prevLevel.Range) + ")";
-        towerStatsText[3].text = "Health: " + prevLevel.Health + " -> " + nextLevel.Health + " (" + (nextLevel.Health - prevLevel.Health) + ")";
-        towerStatsText[4].text = "Bullet Speed: " + prevLevel.BulletSpeed + " -> " + nextLevel.BulletSpeed + " (" + (nextLevel.BulletSpeed - prevLevel.BulletSpeed) + ")";
-        towerStatsText[5].text = "Attack Speed: " + prevLevel.AttackSpeed + " -> " + nextLevel.AttackSpeed + " (" + (nextLevel.AttackSpeed - prevLevel.AttackSpeed) + ")";
-        towerStatsText[6].text = "Upgrade Price: " + nextLevel.UpgradePrice;
+        towerStatsText[0].text = name;
+        towerStatsText[1].text = "Level: " + prevLevel.Level + " -> " + nextLevel.Level;
+        towerStatsText[2].text = "Damage: " + prevLevel.Damage + " -> " + nextLevel.Damage + " (" + (nextLevel.Damage - prevLevel.Damage).ToString("0.00") + ")";
+        towerStatsText[3].text = "Range: " + prevLevel.Range + " -> " + nextLevel.Range + " (" + (nextLevel.Range - prevLevel.Range).ToString("0.00") + ")";
+        towerStatsText[4].text = "Health: " + prevLevel.Health + " -> " + nextLevel.Health + " (" + (nextLevel.Health - prevLevel.Health).ToString("0.00") + ")";
+        towerStatsText[5].text = "Bullet Speed: " + prevLevel.BulletSpeed + " -> " + nextLevel.BulletSpeed + " (" + (nextLevel.BulletSpeed - prevLevel.BulletSpeed).ToString("0.00") + ")";
+        towerStatsText[6].text = "Attack Speed: " + prevLevel.AttackSpeed + " -> " + nextLevel.AttackSpeed + " (" + (nextLevel.AttackSpeed - prevLevel.AttackSpeed).ToString("0.00") + ")";
+        towerStatsText[7].text = "Upgrade Price: " + nextLevel.UpgradePrice;
     }
 
     public void SetCoins(int coins)

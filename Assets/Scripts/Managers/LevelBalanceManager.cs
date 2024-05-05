@@ -23,6 +23,11 @@ public class LevelBalanceManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        CanvasManager.instance.mainGui.SetCoins(coins);
+    }
+
     public void UpdateCoins(int amount)
     {
         coins += amount;

@@ -16,15 +16,29 @@ MonoBehaviour:
   Levels:
   - Level: 1
     Damage: 10
-    Range: 50
+    Range: 20
     Health: 105
     BulletSpeed: 40
     UpgradePrice: 30
     AttackSpeed: 1.5
   - Level: 2
-    Damage: 15
+    Damage: 20
     Range: 50
     Health: 120
-    BulletSpeed: 40
-    UpgradePrice: 50
+    BulletSpeed: 60
+    UpgradePrice: 60
     AttackSpeed: 2
+  - Level: 3
+    Damage: 30
+    Range: 50
+    Health: 125
+    BulletSpeed: 90
+    UpgradePrice: 75
+    AttackSpeed: 4
+  - Level: 4
+    Damage: 40
+    Range: 50
+    Health: 135
+    BulletSpeed: 90
+    UpgradePrice: 120
+    AttackSpeed: 5.2

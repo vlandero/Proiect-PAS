@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Nebula Raider
   m_EditorClassIdentifier: Assembly-CSharp::EnemyType
-  Damage: 10
-  Hp: 20
-  Range: 30
+  Damage: 15
+  Hp: 40
+  Range: 20
   AttackSpeed: 1.2
-  HealPower: 0
-  HealSpeed: 0
+  HealPower: 1
+  HealSpeed: 1
   MoveSpeed: 5
-  Reward: 10
+  BulletSpeed: 30
+  Reward: 25

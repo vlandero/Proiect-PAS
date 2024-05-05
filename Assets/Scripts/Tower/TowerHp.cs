@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TowerHp : MonoBehaviour
 {
     [SerializeField] private Image hpBar;
+    public Canvas hpCanvas;
 
     private void Start()
     {

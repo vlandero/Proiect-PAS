@@ -20,5 +20,6 @@ public class EnemyType : ScriptableObject
     public int HealPower;
     public float HealSpeed;
     public float MoveSpeed;
+    public float BulletSpeed;
     public int Reward;
 }

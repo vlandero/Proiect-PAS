@@ -70,18 +70,14 @@ public class WaveManager : MonoBehaviour
                         target = spawners[wave.spawnerIndex],
                         waypoint = Instantiate(CanvasManager.instance.mainGui.indicatorPrefab, CanvasManager.instance.mainGui.GetComponent<RectTransform>())
                     };
-                    var texts = waypoint.waypoint.GetComponentsInChildren<WaypointText>();
-                    foreach (var text in texts)
-                    {
-                        text.SetTimer(wave.time - timeElapsed);
-                    }
+                    Indicator indicator = waypoint.waypoint.GetComponent<Indicator>();
+                    indicator.enemyTypeText.text = wave.enemyCount + " " + wave.enemyType.ToString();
+                    indicator.timeLeftText.GetComponent<WaypointText>().SetTimer(wave.time - timeElapsed);
                     waypoints.Add(waypoint);
                     cameraWaypoint.AddWaypoint(waypoint);
                 }
             }
         }
-
-        
 
         if (waveIndex < waves.Length && timeElapsed >= waves[waveIndex].time)
         {
@@ -93,8 +89,16 @@ public class WaveManager : MonoBehaviour
 
             ++waveIndex;
         }
+        if (waveIndex == waves.Length && EnemyManager.Instance.enemies.Count == 0)
+        {
+            StartCoroutine(CheckForWin());
+        }
+    }
 
-        if(waveIndex == waves.Length && EnemyManager.Instance.enemies.Count == 0)
+    IEnumerator CheckForWin()
+    {
+        yield return new WaitForSeconds(1f);
+        if (waveIndex == waves.Length && EnemyManager.Instance.enemies.Count == 0)
         {
             CanvasManager.instance.ShowGameOverWin();
         }
@@ -110,8 +114,8 @@ public class WaveManager : MonoBehaviour
     {
         for (int i = 0; i < wave.enemyCount; ++i)
         {
-            yield return new WaitForSeconds(wave.timeBetweenEnemies);
             SpawnEnemy(PrefabManager.enemyPrefabs[wave.enemyType], wave.spawnerIndex);
+            yield return new WaitForSeconds(wave.timeBetweenEnemies);
         }
     }
 }

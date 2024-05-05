@@ -12,11 +12,11 @@ public class UpgradeTowerButton : MonoBehaviour, IPointerEnterHandler, IPointerE
         {
             var currentLevel = PrefabManager.towerTypes[planet.tower.towerName].Levels[planet.tower.level - 1];
             var nextLevel = PrefabManager.towerTypes[planet.tower.towerName].Levels[planet.tower.level];
-            CanvasManager.instance.mainGui.SetTowerStats(currentLevel, nextLevel);
+            CanvasManager.instance.mainGui.SetTowerStats(currentLevel, nextLevel, PrefabManager.towerTypes[planet.tower.towerName].Name);
         }
         else
         {
-            CanvasManager.instance.mainGui.SetTowerStats(PrefabManager.towerTypes[planet.tower.towerName].Levels[planet.tower.level - 1]);
+            CanvasManager.instance.mainGui.SetTowerStats(PrefabManager.towerTypes[planet.tower.towerName].Levels[planet.tower.level - 1], PrefabManager.towerTypes[planet.tower.towerName].Name);
         }
         CanvasManager.instance.mainGui.ToggleTowerStatsPanel(true);
     }
