@@ -14,17 +14,19 @@ public class Bullet : MonoBehaviour
     public int damage = 0;
     public AttackTarget attackTarget;
     public bool hit = false;
-
+    public AudioSource sound;
+    public MeshRenderer renderer;
     private Vector3 direction;
+
     public void SetTarget(GameObject target)
     {
-        Vector3 direction = (target.transform.position - transform.position).normalized;
-        this.direction = direction;
+        direction = (target.transform.position - transform.position).normalized;
         transform.rotation = Quaternion.LookRotation(direction);
     }
 
     void Start()
     {
+        sound.Play();
         StartCoroutine(DestroyAfterTime(timeToLive));
     }
 
@@ -37,7 +39,7 @@ public class Bullet : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        Destroy(gameObject);
+        Destroy(gameObject, sound.clip.length);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,12 +49,12 @@ public class Bullet : MonoBehaviour
             if(other.CompareTag("Sun"))
             {
                 other.GetComponent<Sun>().TakeDamage(damage);
-                Destroy(gameObject);
+                renderer.enabled = false;
             }
             else if(other.CompareTag("Tower"))
             {
                 other.GetComponent<Tower>().TakeDamage(damage);
-                Destroy(gameObject);
+                renderer.enabled = false;
             }
         }
         else if(attackTarget == AttackTarget.Spaceship)
@@ -64,7 +66,7 @@ public class Bullet : MonoBehaviour
                 {
                     en.TakeDamage(damage);
                     hit = true;
-                    Destroy(gameObject);
+                    renderer.enabled = false;
                 }
             }
         }
