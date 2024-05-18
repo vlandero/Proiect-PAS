@@ -10,6 +10,12 @@ public class Planet : MonoBehaviour
     [SerializeField] private GameObject towerCanvas;
     [SerializeField] private GameObject upgradeTowerButton;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip buildSound;
+    [SerializeField] private AudioClip upgradeSound;
+    [SerializeField] private AudioClip destroySound;
+    [SerializeField] private AudioClip failToUpgradeSound;
+
     public UpgradeTowerIcon upgradeTowerIcon;
 
     public Tower tower = null;
@@ -70,6 +76,7 @@ public class Planet : MonoBehaviour
             upgradeTowerIcon.SetLock();
         }
         LevelBalanceManager.Instance.UpdateCoins(-towerType.Levels[0].UpgradePrice);
+        audioSource.PlayOneShot(buildSound);
     }
 
     public void DestroyTower()
@@ -79,6 +86,7 @@ public class Planet : MonoBehaviour
         addTowerButton.SetActive(true);
         selectTowerButton.SetActive(false);
         upgradeTowerButton.SetActive(false);
+        audioSource.PlayOneShot(destroySound);
     }
 
     public bool HasTower()
@@ -102,7 +110,15 @@ public class Planet : MonoBehaviour
     {
         if(tower != null && tower.level < PrefabManager.towerTypes[tower.towerName].Levels.Count)
         {
-            tower.Upgrade();
+            bool hasUpgraded = tower.Upgrade();
+            if (hasUpgraded)
+            {
+                audioSource.PlayOneShot(upgradeSound);
+            }
+            else
+            {
+                audioSource.PlayOneShot(failToUpgradeSound);
+            }
             CanvasManager.instance.mainGui.SetTowerStats(PrefabManager.towerTypes[tower.towerName].Levels[tower.level - 1], PrefabManager.towerTypes[tower.towerName].Name);
         }
     }
