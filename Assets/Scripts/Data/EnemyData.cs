@@ -22,4 +22,6 @@ public class EnemyType : ScriptableObject
     public float MoveSpeed;
     public float BulletSpeed;
     public int Reward;
+
+    private void OnEnable() => hideFlags = HideFlags.DontUnloadUnusedAsset;
 }

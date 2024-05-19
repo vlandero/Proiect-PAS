@@ -20,6 +20,8 @@ public class TowerType : ScriptableObject
 {
     public string Name;
     public List<TowerLevel> Levels = new List<TowerLevel>();
+
+    private void OnEnable() => hideFlags = HideFlags.DontUnloadUnusedAsset;
 }
 
 public enum TowerNameType
