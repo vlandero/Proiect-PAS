@@ -20,6 +20,11 @@ public class PauseManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        isPaused = false;
+    }
+
     public static void Pause()
     {
         isPaused = true;
