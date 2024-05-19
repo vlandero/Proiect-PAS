@@ -2139,16 +2139,96 @@ MonoBehaviour:
       type: 3}
   enemyTypesList:
   - name: 0
-    type: {fileID: 11400000, guid: f26ed2b523cdd014d9f4032f8d53ad59, type: 2}
+    type:
+      Damage: 15
+      Hp: 40
+      Range: 20
+      AttackSpeed: 1.2
+      HealPower: 1
+      HealSpeed: 1
+      MoveSpeed: 5
+      BulletSpeed: 30
+      Reward: 25
   - name: 1
-    type: {fileID: 11400000, guid: 28343f7ba6575424bb5a14fe0579c86a, type: 2}
+    type:
+      Damage: 5
+      Hp: 300
+      Range: 30
+      AttackSpeed: 2
+      HealPower: 10
+      HealSpeed: 2
+      MoveSpeed: 3
+      BulletSpeed: 45
+      Reward: 40
   - name: 2
-    type: {fileID: 11400000, guid: b2f5ea8542b3aae42b44cc9902b6829f, type: 2}
+    type:
+      Damage: 30
+      Hp: 15
+      Range: 45
+      AttackSpeed: 3
+      HealPower: 0
+      HealSpeed: 0
+      MoveSpeed: 10
+      BulletSpeed: 40
+      Reward: 35
   towerTypesList:
   - name: 0
-    type: {fileID: 11400000, guid: ebce22aafd804b24d944e2d30d4fdb9e, type: 2}
+    type:
+      Name: Sentinel
+      Levels:
+      - Level: 1
+        Damage: 10
+        Range: 20
+        Health: 105
+        BulletSpeed: 40
+        UpgradePrice: 30
+        AttackSpeed: 1.5
+      - Level: 2
+        Damage: 20
+        Range: 50
+        Health: 120
+        BulletSpeed: 60
+        UpgradePrice: 60
+        AttackSpeed: 2
+      - Level: 3
+        Damage: 30
+        Range: 50
+        Health: 125
+        BulletSpeed: 90
+        UpgradePrice: 75
+        AttackSpeed: 4
+      - Level: 4
+        Damage: 40
+        Range: 50
+        Health: 135
+        BulletSpeed: 90
+        UpgradePrice: 120
+        AttackSpeed: 5.2
   - name: 1
-    type: {fileID: 11400000, guid: e4cfd148edd7fde489144997592fcc93, type: 2}
+    type:
+      Name: Frostbite
+      Levels:
+      - Level: 1
+        Damage: 30
+        Range: 20
+        Health: 160
+        BulletSpeed: 10
+        UpgradePrice: 30
+        AttackSpeed: 0.8
+      - Level: 2
+        Damage: 35
+        Range: 25
+        Health: 185
+        BulletSpeed: 10
+        UpgradePrice: 40
+        AttackSpeed: 1.8
+      - Level: 3
+        Damage: 60
+        Range: 50
+        Health: 240
+        BulletSpeed: 60
+        UpgradePrice: 175
+        AttackSpeed: 2
 --- !u!1001 &597320898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7009,7 +7089,7 @@ Transform:
   m_GameObject: {fileID: 1952488109}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 79.9, y: 0, z: -29.7}
+  m_LocalPosition: {x: 70.4, y: 0, z: -35.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

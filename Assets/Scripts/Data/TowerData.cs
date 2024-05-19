@@ -15,15 +15,13 @@ public class TowerLevel
 }
 
 [Serializable]
-[CreateAssetMenu(fileName = "TowerData", menuName = "ScriptableObjects/TowerData")]
-public class TowerType : ScriptableObject
+public class TowerType
 {
     public string Name;
-    public List<TowerLevel> Levels = new List<TowerLevel>();
-
-    private void OnEnable() => hideFlags = HideFlags.DontUnloadUnusedAsset;
+    public TowerLevel[] Levels;
 }
 
+[Serializable]
 public enum TowerNameType
 {
     Sentinel,

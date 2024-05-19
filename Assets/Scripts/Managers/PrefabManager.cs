@@ -51,7 +51,6 @@ public class PrefabManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
-
         foreach (EnemyPrefabInstance prefab in enemyPrefabsList)
         {
             if(enemyPrefabs.ContainsKey(prefab.name))
@@ -81,7 +80,7 @@ public class PrefabManager : MonoBehaviour
 
         foreach (ScriptableTowerType type in towerTypesList)
         {
-            if(towerTypes.ContainsKey(type.name))
+            if (towerTypes.ContainsKey(type.name))
             {
                 continue;
             }

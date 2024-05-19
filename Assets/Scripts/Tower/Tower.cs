@@ -105,7 +105,7 @@ public class Tower : MonoBehaviour
     public bool Upgrade()
     {
         TowerType towerType = PrefabManager.towerTypes[towerName];
-        if(level < towerType.Levels.Count)
+        if(level < towerType.Levels.Length)
         {
             if (towerType.Levels[level].UpgradePrice > LevelBalanceManager.Instance.coins)
             {
@@ -122,7 +122,7 @@ public class Tower : MonoBehaviour
             towerHp.UpdateHp(1);
             LevelBalanceManager.Instance.UpdateCoins(-upgradePrice);
         }
-        if(level == towerType.Levels.Count)
+        if(level == towerType.Levels.Length)
         {
             parentPlanet.upgradeTowerIcon.SetLock();
         }

@@ -20,7 +20,7 @@ public class Planet : MonoBehaviour
 
     public Tower tower = null;
 
-    [SerializeField] public Renderer planetMeshRenderer;
+    public Renderer planetMeshRenderer;
     [Header("Stats")]
     public int orbitSpeed = 10;
 
@@ -67,7 +67,7 @@ public class Planet : MonoBehaviour
         addTowerButton.SetActive(false);
         selectTowerButton.SetActive(false);
         upgradeTowerButton.SetActive(true);
-        if (towerType.Levels.Count > 1)
+        if (towerType.Levels.Length > 1)
         {
             upgradeTowerIcon.SetUpgrade();
         }
@@ -108,7 +108,7 @@ public class Planet : MonoBehaviour
 
     public void UpgradeTower()
     {
-        if(tower != null && tower.level < PrefabManager.towerTypes[tower.towerName].Levels.Count)
+        if(tower != null && tower.level < PrefabManager.towerTypes[tower.towerName].Levels.Length)
         {
             bool hasUpgraded = tower.Upgrade();
             if (hasUpgraded)
