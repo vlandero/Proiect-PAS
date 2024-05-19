@@ -97,7 +97,7 @@ public class WaveManager : MonoBehaviour
 
     IEnumerator CheckForWin()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2.5f);
         if (waveIndex == waves.Length && EnemyManager.Instance.enemies.Count == 0)
         {
             CanvasManager.instance.ShowGameOverWin();

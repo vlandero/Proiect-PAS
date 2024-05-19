@@ -1997,7 +1997,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2433,14 +2433,14 @@ MonoBehaviour:
     enemyCount: 4
     spawnerIndex: 1
     timeBetweenEnemies: 1
-  - time: 120
+  - time: 100
     enemyType: 2
     enemyCount: 15
     spawnerIndex: 3
     timeBetweenEnemies: 1
-  - time: 120
-    enemyType: 2
-    enemyCount: 15
+  - time: 100
+    enemyType: 0
+    enemyCount: 10
     spawnerIndex: 2
     timeBetweenEnemies: 1
   waveSpawnersObject: {fileID: 1519719844}
