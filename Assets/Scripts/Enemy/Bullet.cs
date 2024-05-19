@@ -66,7 +66,7 @@ public class Bullet : MonoBehaviour
                 {
                     en.TakeDamage(damage);
                     hit = true;
-                    renderer.enabled = false;
+                    Destroy(gameObject);
                 }
             }
         }

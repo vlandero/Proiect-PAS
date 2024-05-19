@@ -23,6 +23,10 @@ public class Tower : MonoBehaviour
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private GameObject bulletPrefab;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip takeDamageSound;
+
     private Planet parentPlanet;
 
     private void Start()
@@ -98,14 +102,14 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void Upgrade()
+    public bool Upgrade()
     {
         TowerType towerType = PrefabManager.towerTypes[towerName];
-        if(level < towerType.Levels.Count)
+        if(level < towerType.Levels.Length)
         {
             if (towerType.Levels[level].UpgradePrice > LevelBalanceManager.Instance.coins)
             {
-                return;
+                return false;
             }
             level++;
             damage = towerType.Levels[level - 1].Damage;
@@ -118,10 +122,11 @@ public class Tower : MonoBehaviour
             towerHp.UpdateHp(1);
             LevelBalanceManager.Instance.UpdateCoins(-upgradePrice);
         }
-        if(level == towerType.Levels.Count)
+        if(level == towerType.Levels.Length)
         {
             parentPlanet.upgradeTowerIcon.SetLock();
         }
+        return true;
     }
 
     private void Destroy()

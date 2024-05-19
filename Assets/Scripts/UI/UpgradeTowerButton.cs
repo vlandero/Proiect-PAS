@@ -8,7 +8,7 @@ public class UpgradeTowerButton : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField] private Planet planet;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(planet.tower.level < PrefabManager.towerTypes[planet.tower.towerName].Levels.Count)
+        if(planet.tower.level < PrefabManager.towerTypes[planet.tower.towerName].Levels.Length)
         {
             var currentLevel = PrefabManager.towerTypes[planet.tower.towerName].Levels[planet.tower.level - 1];
             var nextLevel = PrefabManager.towerTypes[planet.tower.towerName].Levels[planet.tower.level];

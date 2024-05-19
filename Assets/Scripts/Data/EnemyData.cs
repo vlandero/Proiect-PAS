@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
+[Serializable]
 public enum EnemyNameType
 {
     NebulaRaider,
@@ -10,8 +8,8 @@ public enum EnemyNameType
     AstroAssassin
 }
 
-[CreateAssetMenu(fileName = "EnemyData", menuName = "ScriptableObjects/EnemyData")]
-public class EnemyType : ScriptableObject
+[Serializable]
+public class EnemyType
 {
     public int Damage;
     public int Hp;

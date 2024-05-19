@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 934463711347417689}
   - component: {fileID: 1273427393006805529}
   - component: {fileID: 8070125711984121262}
-  - component: {fileID: -8100860668854240706}
+  - component: {fileID: 8219083763640364940}
   m_Layer: 8
   m_Name: Nebula Rider
   m_TagString: Enemy
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
---- !u!82 &-8100860668854240706
+--- !u!82 &8219083763640364940
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,7 +179,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 99be03c7916b242f7a444b0b2bff8e14, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 47a4b7bbdec9246ba8dba2b3e4fccad3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.05
   m_Pitch: 1

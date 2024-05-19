@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15158607, g: 0.15147701, b: 0.19517645, a: 1}
+  m_IndirectSpecularColor: {r: 0.1515829, g: 0.15147191, b: 0.19517085, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -809,6 +809,7 @@ GameObject:
   - component: {fileID: 206522628}
   - component: {fileID: 206522630}
   - component: {fileID: 206522631}
+  - component: {fileID: 206522632}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Sun
@@ -914,6 +915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b17f7d95fc2648439b3b98a823baa9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 206522632}
+  sunDamageSound: {fileID: 8300000, guid: dffad7e68108d67449ccfc7a832d7ec2, type: 3}
 --- !u!114 &206522629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,6 +962,102 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!82 &206522632
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206522623}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.149
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &318511221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,7 +1997,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2040,16 +2139,96 @@ MonoBehaviour:
       type: 3}
   enemyTypesList:
   - name: 0
-    type: {fileID: 11400000, guid: f26ed2b523cdd014d9f4032f8d53ad59, type: 2}
+    type:
+      Damage: 15
+      Hp: 40
+      Range: 20
+      AttackSpeed: 1.2
+      HealPower: 1
+      HealSpeed: 1
+      MoveSpeed: 5
+      BulletSpeed: 30
+      Reward: 25
   - name: 1
-    type: {fileID: 11400000, guid: 28343f7ba6575424bb5a14fe0579c86a, type: 2}
+    type:
+      Damage: 5
+      Hp: 300
+      Range: 30
+      AttackSpeed: 2
+      HealPower: 10
+      HealSpeed: 2
+      MoveSpeed: 3
+      BulletSpeed: 45
+      Reward: 40
   - name: 2
-    type: {fileID: 11400000, guid: b2f5ea8542b3aae42b44cc9902b6829f, type: 2}
+    type:
+      Damage: 30
+      Hp: 15
+      Range: 45
+      AttackSpeed: 3
+      HealPower: 0
+      HealSpeed: 0
+      MoveSpeed: 10
+      BulletSpeed: 40
+      Reward: 35
   towerTypesList:
   - name: 0
-    type: {fileID: 11400000, guid: ebce22aafd804b24d944e2d30d4fdb9e, type: 2}
+    type:
+      Name: Sentinel
+      Levels:
+      - Level: 1
+        Damage: 10
+        Range: 20
+        Health: 105
+        BulletSpeed: 40
+        UpgradePrice: 30
+        AttackSpeed: 1.5
+      - Level: 2
+        Damage: 20
+        Range: 50
+        Health: 120
+        BulletSpeed: 60
+        UpgradePrice: 60
+        AttackSpeed: 2
+      - Level: 3
+        Damage: 30
+        Range: 50
+        Health: 125
+        BulletSpeed: 90
+        UpgradePrice: 75
+        AttackSpeed: 4
+      - Level: 4
+        Damage: 40
+        Range: 50
+        Health: 135
+        BulletSpeed: 90
+        UpgradePrice: 120
+        AttackSpeed: 5.2
   - name: 1
-    type: {fileID: 11400000, guid: e4cfd148edd7fde489144997592fcc93, type: 2}
+    type:
+      Name: Frostbite
+      Levels:
+      - Level: 1
+        Damage: 30
+        Range: 20
+        Health: 160
+        BulletSpeed: 10
+        UpgradePrice: 30
+        AttackSpeed: 0.8
+      - Level: 2
+        Damage: 35
+        Range: 25
+        Health: 185
+        BulletSpeed: 10
+        UpgradePrice: 40
+        AttackSpeed: 1.8
+      - Level: 3
+        Damage: 60
+        Range: 50
+        Health: 240
+        BulletSpeed: 60
+        UpgradePrice: 175
+        AttackSpeed: 2
 --- !u!1001 &597320898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2229,7 +2408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - time: 10
+  - time: 1
     enemyType: 0
     enemyCount: 8
     spawnerIndex: 4
@@ -2254,14 +2433,14 @@ MonoBehaviour:
     enemyCount: 4
     spawnerIndex: 1
     timeBetweenEnemies: 1
-  - time: 120
+  - time: 100
     enemyType: 2
     enemyCount: 15
     spawnerIndex: 3
     timeBetweenEnemies: 1
-  - time: 120
-    enemyType: 2
-    enemyCount: 15
+  - time: 100
+    enemyType: 0
+    enemyCount: 10
     spawnerIndex: 2
     timeBetweenEnemies: 1
   waveSpawnersObject: {fileID: 1519719844}
@@ -6910,7 +7089,7 @@ Transform:
   m_GameObject: {fileID: 1952488109}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 79.9, y: 0, z: -29.7}
+  m_LocalPosition: {x: 70.4, y: 0, z: -35.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

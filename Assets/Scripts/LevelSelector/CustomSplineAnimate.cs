@@ -20,6 +20,10 @@ public class CustomSplineAnimate : MonoBehaviour
     private bool movingForward = true;
     [SerializeField] private Renderer rend;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip portalSound;
+
     private void Start()
     {
         totalPortals = spline.Spline.Count - 1;
@@ -62,6 +66,7 @@ public class CustomSplineAnimate : MonoBehaviour
             {
                 isMoving = true;
                 animator.SetTrigger("EnterLevel");
+                audioSource.PlayOneShot(portalSound);
                 StartCoroutine(SwitchToLevelScene());
             }
         }
@@ -113,7 +118,7 @@ public class CustomSplineAnimate : MonoBehaviour
 
     private IEnumerator SwitchToLevelScene()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3.5f);
         SceneManager.LoadScene(currentPortalIndex + 2);
     }
 }
